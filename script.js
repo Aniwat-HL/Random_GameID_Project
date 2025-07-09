@@ -8,11 +8,13 @@ function checkPassword() {
 
     // ตรวจสอบรหัสที่กรอก
     if (enteredPassword === correctPassword) {
-        // ซ่อนฟอร์มกรอกรหัส
-        document.getElementById('loginForm').style.display = 'none';
+        // ซ่อนฟอร์มกรอกรหัสและเปลี่ยนเป็นข้อความ
+        document.getElementById('passwordInput').style.display = 'none'; // ซ่อนช่องกรอกรหัส
+        document.getElementById('passwordInput').placeholder = "เข้าสู่ระบบสำเร็จ"; // เปลี่ยนข้อความในช่องกรอก
 
-        // แสดงปุ่มรีเซ็ตและการควบคุมสำหรับผู้ดูแล
-        document.getElementById('gameControls').style.display = 'block';
+        // แสดงปุ่มสุ่มตัวเลขและการควบคุมสำหรับผู้ดูแล
+        document.getElementById('generateButton').disabled = false; // เปิดปุ่มสุ่ม
+        document.getElementById('resetButton').disabled = false; // เปิดปุ่มรีเซ็ต
     } else {
         alert('รหัสผ่านไม่ถูกต้อง');
     }
