@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* ตั้งค่าพื้นหลังที่สะอาดตา */
+/* ตั้งค่าพื้นหลังให้เหมือนเกม Adventure */
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -13,7 +13,9 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #000000;
+    background: url('background-adventure.jpg') no-repeat center center fixed; /* ใส่ภาพพื้นหลังธีมเกมผจญภัย */
+    background-size: cover;
+    color: white; /* สีข้อความ */
 }
 
 /* ออกแบบคอนเทนเนอร์ */
@@ -23,21 +25,27 @@ body {
     align-items: center;
     width: 80%;
     max-width: 1000px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7); /* พื้นหลังโปร่งใส */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 15px; /* ขอบมน */
 }
 
 /* ฟอร์มกรอกรหัส */
 .left {
     text-align: center;
     width: 40%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3); /* พื้นหลังโปร่งใส */
+    border-radius: 10px;
 }
 
 .right {
     text-align: center;
     width: 40%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3); /* พื้นหลังโปร่งใส */
+    border-radius: 10px;
 }
 
 /* การจัดการฟอร์มกรอกรหัส */
@@ -48,22 +56,27 @@ input {
     border: 1px solid #ccc;
     width: 80%;
     margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.3); /* โปร่งใส */
+    color: #fff;
 }
 
+/* ปุ่มพื้นฐาน */
 button {
-    padding: 10px 20px;
+    padding: 12px 30px;
     font-size: 18px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
     background-color: #4CAF50;
     color: white;
     border: none;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
+/* เปลี่ยนสีเมื่อ hover บนปุ่ม */
 button:hover {
     background-color: #45a049;
+    transform: translateY(-3px); /* ยกปุ่มขึ้น */
 }
 
 /* ปรับปุ่มรีเซ็ต */
@@ -87,5 +100,5 @@ button:hover {
     margin-top: 30px;
     font-size: 1.5em;
     font-weight: bold;
-    color: #333;
+    color: #fff;
 }
