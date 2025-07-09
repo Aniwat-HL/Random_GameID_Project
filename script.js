@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     appId: "1:391713152656:web:da4d659a3700ca6c814215"
   };
 
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
 
