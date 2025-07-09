@@ -58,7 +58,8 @@ function checkIfAlreadyGenerated() {
     const storedNumber = localStorage.getItem("generatedNumber");
 
     if (storedNumber) {
-        document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + storedNumber;
+        document.getElementById('randomNumberResult').innerHTML =
+  'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + storedNumber + '</span>';
         const genBtn = document.getElementById('generateButton');
         if (genBtn) {
             genBtn.disabled = true;
