@@ -1,7 +1,7 @@
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ตัวเลขที่ตั้งค่าไว้
 
-// ฟังก์ชันตรวจสอบ ID ผู้ดูแล
+// ฟังก์ชันตรวจสอบ ID สำหรับ Admin
 function checkLogin() {
     const correctID = "admin123"; // กำหนด ID ที่ถูกต้อง
     const enteredID = document.getElementById('idInput').value;
@@ -10,10 +10,9 @@ function checkLogin() {
     if (enteredID === correctID) {
         // ซ่อนฟอร์มกรอก ID และแสดงข้อความ "เข้าสู่ระบบสำเร็จ"
         document.getElementById('idInput').style.display = 'none'; // ซ่อนช่องกรอกรหัส
-        document.getElementById('idInput').placeholder = "เข้าสู่ระบบสำเร็จ"; // เปลี่ยนข้อความในช่องกรอก
+        document.getElementById('loginMessage').innerHTML = "<h2>เข้าสู่ระบบสำเร็จ</h2>"; // เปลี่ยนข้อความในช่องกรอก
 
-        // แสดงปุ่มสุ่มตัวเลขและการควบคุมสำหรับผู้ดูแล
-        document.getElementById('generateButton').disabled = false; // เปิดปุ่มสุ่ม
+        // เปิดปุ่มรีเซ็ต
         document.getElementById('resetButton').disabled = false; // เปิดปุ่มรีเซ็ต
     } else {
         alert('ID ไม่ถูกต้อง');
