@@ -9,8 +9,8 @@ html, body {
   color: #333;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* ทำให้เนื้อหาตรงกลางและ footer อยู่ด้านล่าง */
-  align-items: center;
+  justify-content: center; /* จัดกลางในแนวตั้ง */
+  align-items: center; /* จัดกลางในแนวนอน */
   min-height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
 }
 
@@ -65,7 +65,7 @@ html, body {
 
 /* ✅ Main */
 main.container {
-  flex-grow: 1; /* ทำให้เนื้อหาขยายเต็มหน้าจอ */
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center; /* จัดกลางในแนวตั้ง */
@@ -76,18 +76,27 @@ main.container {
   padding: 20px;
   width: 100%;
   text-align: center;
+}
+
+/* ✅ กล่องติดต่อ (Contact) */
+.contact-container .left, .privacy-container .left {
+  flex: 1;
   background: #fff;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงาเบาๆ */
-  min-height: 300px; /* กำหนดความสูงขั้นต่ำสำหรับพื้นที่หลัก */
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  text-align: left;
+  margin: 20px;
+  max-width: 900px;
+  width: 100%;
 }
 
 /* ✅ หัวข้อ */
 h2 {
   font-size: 2em;
   margin-bottom: 20px;
-  font-weight: 600;
-  color: #003366; /* สีกรมท่าสำหรับหัวข้อ */
+  font-weight: bold;
+  color: #005f6a;
 }
 
 /* ✅ ข้อความเนื้อหา */
@@ -98,36 +107,27 @@ p, ul {
 }
 
 /* ✅ ปุ่ม */
-.btn {
+.btn, .back-to-home {
   padding: 12px 28px;
   font-size: 16px;
   margin: 10px auto;
   display: block;
-  border-radius: 8px;
-  border: 1px solid #003366;
-  background-color: #003366; /* สีกรมท่าที่เข้ม */
+  border-radius: 6px;
+  border: none;
+  background-color: #00695c; /* ปุ่มสีเขียวเข้ม */
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s;
 }
 
-.btn:hover {
-  background-color: #004d80; /* สีกรมท่าเข้มขึ้นเมื่อ hover */
-  transform: translateY(-2px); /* ทำให้ปุ่มยกขึ้นเล็กน้อยเมื่อ hover */
-}
-
-.reset {
-  background-color: #d32f2f; /* สีแดงสำหรับปุ่มรีเซ็ต */
-}
-
-.reset:hover {
-  background-color: #c62828; /* สีแดงเข้มเมื่อ hover */
+.btn:hover, .back-to-home:hover {
+  background-color: #004d40; /* ปุ่มเปลี่ยนเป็นสีเข้มเมื่อ hover */
 }
 
 /* ✅ Footer */
 .footer {
   text-align: center;
-  padding: 16px 0;
+  padding: 20px 0;
   font-size: 14px;
   background-color: #eeeeee;
   border-top: 1px solid #ccc;
@@ -137,7 +137,7 @@ p, ul {
 
 .footer a {
   margin-left: 10px;
-  color: #003366;
+  color: #005f6a;
   text-decoration: none;
   font-weight: 500;
 }
@@ -148,11 +148,12 @@ p, ul {
 
 /* ✅ Responsive Design */
 @media (max-width: 768px) {
-  main.container {
+  .contact-container .left, .privacy-container .left {
     padding: 20px;
+    width: 100%;
   }
 
-  .btn {
+  .btn, .back-to-home {
     width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
   }
 
