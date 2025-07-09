@@ -1,10 +1,11 @@
-/* ทำให้เว็บไซต์มีความยืดหยุ่นและการตั้งค่าเบื้องต้น */
+/* รีเซ็ตค่าเริ่มต้น */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ตั้งค่าพื้นหลังให้เรียบง่าย */
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -12,47 +13,48 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #111;
-    color: #fff;
-    overflow: hidden;
-    background: linear-gradient(45deg, #f06, #ff9);
+    background-color: #f0f0f0; /* พื้นหลังสีอ่อนที่สะอาด */
+    color: #333; /* ตัวอักษรสีดำที่อ่านง่าย */
 }
 
-/* ออกแบบ container */
+/* ออกแบบคอนเทนเนอร์ให้ดูเรียบง่ายและมีระเบียบ */
 .container {
     text-align: center;
     padding: 40px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    transform: scale(0.8);
-    animation: fadeIn 1s forwards; /* เพิ่ม animation เมื่อโหลดหน้า */
+    background-color: #fff; /* พื้นหลังขาว */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* เงาเบาๆ */
+    border-radius: 10px; /* ขอบมน */
+    width: 350px; /* ขนาดคอนเทนเนอร์ที่เหมาะสม */
+    text-align: center;
 }
 
 /* การเคลื่อนไหวของข้อความ title */
 .title {
     font-size: 2.5em;
     margin-bottom: 20px;
-    animation: slideIn 1s ease-out; /* ให้ title เลื่อนเข้ามา */
+    color: #333;
+    font-weight: 600;
+    animation: fadeIn 1s ease-out;
 }
 
-/* การเคลื่อนไหวของปุ่ม */
+/* ปรับปุ่มสุ่มตัวเลขให้มีดีไซน์ที่เรียบง่าย */
 .btn {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* สีเขียวสดใส */
     color: white;
-    padding: 15px 32px;
-    font-size: 20px;
+    padding: 15px 35px;
+    font-size: 18px;
     border: none;
-    border-radius: 50px;
+    border-radius: 25px; /* ขอบมน */
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: pulse 1.5s infinite; /* ปุ่มจะเด้งๆ อยู่ */
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 /* เปลี่ยนสีเมื่อ hover บนปุ่ม */
 .btn:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* สีที่เปลี่ยนเมื่อ hover */
+    transform: translateY(-3px); /* เอฟเฟกต์เมื่อ hover */
 }
 
 /* แสดงผลการสุ่มตัวเลข */
@@ -60,12 +62,18 @@ body {
     margin-top: 30px;
     font-size: 1.5em;
     font-weight: bold;
-    color: #f7f7f7;
+    color: #333;
     opacity: 0;
-    animation: fadeInText 1s ease-out forwards; /* ให้ผลลัพธ์ค่อยๆ ปรากฏ */
+    animation: fadeInText 1s ease-out forwards;
 }
 
-/* CSS Animation */
+/* การตั้งค่าเมื่อปุ่มไม่สามารถกดได้ */
+.disabled {
+    background-color: #ff4d4d; /* สีแดงเมื่อปุ่มถูกปิด */
+    cursor: not-allowed; /* เปลี่ยนเคอร์เซอร์ให้ไม่สามารถคลิกได้ */
+}
+
+/* CSS Animation สำหรับ fadeIn */
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -77,27 +85,7 @@ body {
     }
 }
 
-@keyframes slideIn {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
+/* การเคลื่อนไหวข้อความ */
 @keyframes fadeInText {
     0% {
         opacity: 0;
@@ -105,18 +93,4 @@ body {
     100% {
         opacity: 1;
     }
-}
-
-/* ปรับการตั้งค่าเบื้องต้นสำหรับปุ่มสุ่มและข้อความผลลัพธ์ */
-.result {
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* การตั้งค่าเมื่อปุ่มไม่สามารถกดได้ */
-.disabled {
-    background-color: #ff4d4d;
-    cursor: not-allowed;
 }
