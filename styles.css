@@ -4,86 +4,103 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   height: 100%;
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background-color: #f9f9f9; /* พื้นหลังสีอ่อน */
   color: #333;
   display: flex;
   flex-direction: column;
   justify-content: center; /* จัดกลางในแนวตั้ง */
   align-items: center; /* จัดกลางในแนวนอน */
-  min-height: 100vh; /* ให้หน้ากระดาษเต็มจอ */
+  min-height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
 }
 
-/* ✅ Header คงที่ด้านบน */
+/* ✅ Header */
 .app-header {
   height: 60px;
-  background-color: #004d40;
+  background-color: #005f6a; /* สีพื้นหลังเข้มเพื่อให้ดูเป็นทางการ */
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
 }
 
-/* ✅ กล่องอีเมล + logout */
-.user-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.logout-btn {
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 13px;
-  cursor: pointer;
-}
-.logout-btn:hover {
-  background-color: #b71c1c;
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-/* ✅ Main */
+/* ✅ เนื้อหาหลัก */
 main.container {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center; /* จัดกลางในแนวตั้ง */
   align-items: center; /* จัดกลางในแนวนอน */
-  gap: 40px;
-  max-width: 1000px;
-  margin: 40px auto;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
   width: 100%;
   text-align: center;
-  min-height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
 }
 
-/* ✅ Main สำหรับหน้า contact และ privacy */
-.contact-container, .privacy-container {
+/* ✅ กล่องติดต่อ (Contact) */
+.contact-container .left, .privacy-container .left {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* จัดกลางในแนวตั้ง */
-  align-items: flex-start; /* ทำให้ข้อความชิดซ้าย */
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  text-align: left;
+  margin: 20px;
+  max-width: 900px;
   width: 100%;
-  text-align: left; /* ทำให้ข้อความชิดซ้าย */
-  min-height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
+}
+
+/* ✅ หัวข้อ */
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #005f6a;
+}
+
+/* ✅ ข้อความเนื้อหา */
+p, ul {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* ✅ ปุ่ม */
+.btn, .back-to-home {
+  padding: 12px 28px;
+  font-size: 16px;
+  margin: 10px auto;
+  display: block;
+  border-radius: 6px;
+  border: none;
+  background-color: #00695c; /* ปุ่มสีเขียวเข้ม */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover, .back-to-home:hover {
+  background-color: #004d40; /* ปุ่มเปลี่ยนเป็นสีเข้มเมื่อ hover */
 }
 
 /* ✅ Footer */
 .footer {
   text-align: center;
-  padding: 16px 0;
+  padding: 20px 0;
   font-size: 14px;
   background-color: #eeeeee;
   border-top: 1px solid #ccc;
@@ -93,78 +110,23 @@ main.container {
 
 .footer a {
   margin-left: 10px;
-  color: #00695c;
+  color: #005f6a;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .footer a:hover {
   text-decoration: underline;
 }
 
-/* ✅ กล่อง login/sum */
-.left, .right {
-  flex: 1 1 420px;
-  min-width: 300px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-  text-align: center;
-  margin: 10px;
-}
-
-h1, h2 {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-}
-
-/* ปุ่มสวย */
-.btn {
-  padding: 12px 28px;
-  font-size: 16px;
-  margin: 10px auto;
-  display: block;
-  border-radius: 6px;
-  border: none;
-  background-color: #2e7d32;
-  color: white;
-  cursor: pointer;
-}
-.btn.reset {
-  background-color: #c62828;
-}
-
-/* ปรับสไตล์สำหรับปุ่มกลับไปหน้าหลัก */
-.back-to-home {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #00695c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.back-to-home:hover {
-  background-color: #004d40;
-}
-
-/* @media Queries สำหรับมือถือ */
+/* ✅ Responsive Design */
 @media (max-width: 768px) {
-  .left, .right {
-    flex: 1 1 100%;
-    min-width: 0;
+  .contact-container .left, .privacy-container .left {
     padding: 20px;
     width: 100%;
   }
 
-  .btn {
-    padding: 10px 20px;
-    font-size: 14px;
+  .btn, .back-to-home {
     width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
   }
 
