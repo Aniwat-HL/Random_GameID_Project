@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = snapshot.val();
       if (data && data.version === version) {
         showResult(data.number);
-        disableGenerate();
+        disableGenerate(); // เรียก disable generate หลังจากสุ่ม
       }
     });
   }
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         userRef.set({ number: randomNumber, version });
 
         showResult(randomNumber);
-        disableGenerate();
+        disableGenerate(); // ปิดปุ่มสุ่มเมื่อเสร็จ
       });
     });
   };
