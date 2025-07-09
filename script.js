@@ -38,10 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
       .then(result => {
-        console.log("Login successful", result); // ตรวจสอบผลการเข้าสู่ระบบ
+        console.log("Login successful", result);
       })
       .catch(err => {
-        console.error("เข้าสู่ระบบล้มเหลว:", err.message); // ตรวจสอบข้อผิดพลาด
+        console.error("เข้าสู่ระบบล้มเหลว:", err.message);
         alert("เข้าสู่ระบบล้มเหลว: " + err.message);
       });
   };
