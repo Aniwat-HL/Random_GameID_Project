@@ -10,11 +10,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database(app);
 
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ตัวเลขที่ตั้งค่าไว้
@@ -39,9 +36,9 @@ function checkLogin() {
 
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
-    const usedNumbersRef = ref(database, 'usedNumbers');
+    const usedNumbersRef = firebase.database().ref('usedNumbers');
     
-    get(usedNumbersRef).then((snapshot) => {
+    usedNumbersRef.once('value').then((snapshot) => {
         const usedNumbers = snapshot.val() || [];
 
         // หากไม่มีตัวเลขให้สุ่มแล้ว
@@ -66,7 +63,7 @@ function generateRandomNumber() {
         usedNumbers.push(randomNumber);
 
         // บันทึกข้อมูล usedNumbers ใน Firebase
-        set(usedNumbersRef, usedNumbers);
+        usedNumbersRef.set(usedNumbers);
 
         // ลบตัวเลขที่สุ่มแล้วออกจากอาเรย์
         availableNumbers.splice(randomIndex, 1);
@@ -82,8 +79,8 @@ function resetGame() {
     availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
 
     // ล้างข้อมูล usedNumbers ใน Firebase
-    const usedNumbersRef = ref(database, 'usedNumbers');
-    set(usedNumbersRef, []);
+    const usedNumbersRef = firebase.database().ref('usedNumbers');
+    usedNumbersRef.set([]);
 
     // เปิดปุ่มสุ่มตัวเลขและปิดปุ่มรีเซ็ต
     document.getElementById('generateButton').disabled = false;
