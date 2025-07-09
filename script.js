@@ -11,7 +11,7 @@ function checkPassword() {
         // ซ่อนฟอร์มกรอกรหัส
         document.getElementById('loginForm').style.display = 'none';
 
-        // แสดงปุ่มสุ่มตัวเลขและการควบคุมสำหรับผู้ดูแล
+        // แสดงปุ่มรีเซ็ตและการควบคุมสำหรับผู้ดูแล
         document.getElementById('gameControls').style.display = 'block';
     } else {
         alert('รหัสผ่านไม่ถูกต้อง');
