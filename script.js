@@ -1,20 +1,9 @@
-// Firebase Configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
-  authDomain: "gamerandomid-90c54.firebaseapp.com",
-  projectId: "gamerandomid-90c54",
-  storageBucket: "gamerandomid-90c54.firebasestorage.app",
-  messagingSenderId: "391713152656",
-  appId: "1:391713152656:web:da4d659a3700ca6c814215",
-  measurementId: "G-Q75WSFLQBC"
+window.onload = function () {
+    checkIfAlreadyGenerated();
 };
 
-// Initialize Firebase (v8 syntax)
-// firebase.initializeApp({
-//   ...firebaseConfig,
-//   databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app"
-// });
-firebase.initializeApp({
+// Firebase Configuration
+const firebaseConfig = {
   apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
   authDomain: "gamerandomid-90c54.firebaseapp.com",
   databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -23,8 +12,10 @@ firebase.initializeApp({
   messagingSenderId: "391713152656",
   appId: "1:391713152656:web:da4d659a3700ca6c814215",
   measurementId: "G-Q75WSFLQBC"
-});
+};
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
@@ -44,9 +35,26 @@ function checkLogin() {
     }
 }
 
+// ฟังก์ชันตรวจสอบว่ามีการสุ่มไปแล้วหรือยัง
+function checkIfAlreadyGenerated() {
+    const storedNumber = localStorage.getItem("generatedNumber");
+
+    if (storedNumber) {
+        document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + storedNumber;
+        document.getElementById('generateButton').disabled = true;
+        document.getElementById('generateButton').classList.add('disabled');
+    }
+}
+
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
     const usedNumbersRef = database.ref('usedNumbers');
+
+    // ถ้าเครื่องนี้สุ่มไปแล้ว
+    if (localStorage.getItem("generatedNumber")) {
+        checkIfAlreadyGenerated();
+        return;
+    }
 
     usedNumbersRef.once('value').then((snapshot) => {
         const usedNumbers = snapshot.val() || [];
@@ -65,6 +73,10 @@ function generateRandomNumber() {
         } while (usedNumbers.includes(randomNumber));
 
         document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
+
+        // บันทึกลง localStorage
+        localStorage.setItem("alreadyGenerated", "true");
+        localStorage.setItem("generatedNumber", randomNumber);
 
         usedNumbers.push(randomNumber);
         usedNumbersRef.set(usedNumbers);
@@ -86,4 +98,8 @@ function resetGame() {
     document.getElementById('generateButton').disabled = false;
     document.getElementById('generateButton').classList.remove('disabled');
     document.getElementById('randomNumberResult').innerText = '';
+
+    // เคลียร์ localStorage
+    localStorage.removeItem("alreadyGenerated");
+    localStorage.removeItem("generatedNumber");
 }
