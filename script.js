@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    checkIfAlreadyGenerated();
+    initializeAppWithResetCheck();
 });
 
 const firebaseConfig = {
@@ -18,6 +18,25 @@ const database = firebase.database();
 
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
 
+// ✅ ตรวจสอบว่า resetVersion ใน Firebase เปลี่ยนหรือไม่
+function initializeAppWithResetCheck() {
+    const resetVersionRef = database.ref('resetVersion');
+
+    resetVersionRef.once('value').then((snapshot) => {
+        const currentVersion = snapshot.val() || 0;
+        const localVersion = localStorage.getItem("resetVersion");
+
+        if (localVersion !== String(currentVersion)) {
+            // reset local storage ถ้า version ไม่ตรง
+            localStorage.removeItem("generatedNumber");
+            localStorage.setItem("resetVersion", String(currentVersion));
+        }
+
+        checkIfAlreadyGenerated();
+    });
+}
+
+// ✅ ตรวจสอบการเข้าสู่ระบบแอดมิน
 function checkLogin() {
     const correctID = "boonkongmag_00@hotmail.com";
     const enteredID = document.getElementById('idInput').value;
@@ -31,6 +50,7 @@ function checkLogin() {
     }
 }
 
+// ✅ แสดงเลขเดิมที่สุ่มไว้ และปิดปุ่ม
 function checkIfAlreadyGenerated() {
     const storedNumber = localStorage.getItem("generatedNumber");
 
@@ -44,25 +64,26 @@ function checkIfAlreadyGenerated() {
     }
 }
 
+// ✅ ฟังก์ชันสุ่มตัวเลข (ตรวจ resetVersion และจำเลขไว้)
 function generateRandomNumber() {
     const usedNumbersRef = database.ref('usedNumbers');
+    const resetVersionRef = database.ref('resetVersion');
 
     if (localStorage.getItem("generatedNumber")) {
         checkIfAlreadyGenerated();
         return;
     }
 
-    usedNumbersRef.once('value').then((snapshot) => {
-        const usedNumbers = snapshot.val() || [];
+    Promise.all([usedNumbersRef.once('value'), resetVersionRef.once('value')]).then(([usedSnap, resetSnap]) => {
+        const usedNumbers = usedSnap.val() || [];
+        const resetVersion = resetSnap.val() || 0;
 
         if (availableNumbers.length === 0) {
             document.getElementById('randomNumberResult').innerText = 'ไม่มีตัวเลขให้สุ่มแล้ว';
             return;
         }
 
-        let randomNumber;
-        let randomIndex;
-
+        let randomNumber, randomIndex;
         do {
             randomIndex = Math.floor(Math.random() * availableNumbers.length);
             randomNumber = availableNumbers[randomIndex];
@@ -70,27 +91,36 @@ function generateRandomNumber() {
 
         document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
 
+        // 👉 บันทึกไว้ใน localStorage พร้อม resetVersion
         localStorage.setItem("generatedNumber", randomNumber);
+        localStorage.setItem("resetVersion", String(resetVersion));
 
         usedNumbers.push(randomNumber);
         usedNumbersRef.set(usedNumbers);
-
         availableNumbers.splice(randomIndex, 1);
 
-        document.getElementById('generateButton').disabled = true;
-        document.getElementById('generateButton').classList.add('disabled');
+        const genBtn = document.getElementById('generateButton');
+        genBtn.disabled = true;
+        genBtn.classList.add('disabled');
     });
 }
 
+// ✅ ฟังก์ชันรีเซ็ต (admin ใช้งานเท่านั้น)
 function resetGame() {
     availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
 
+    // 🔄 ล้าง usedNumbers + ตั้ง resetVersion ใหม่ (timestamp)
     const usedNumbersRef = database.ref('usedNumbers');
     usedNumbersRef.set([]);
 
+    const newResetVersion = Date.now();
+    database.ref('resetVersion').set(newResetVersion);
+
+    // 🔄 ล้าง localStorage เครื่อง admin เองด้วย
     document.getElementById('generateButton').disabled = false;
     document.getElementById('generateButton').classList.remove('disabled');
     document.getElementById('randomNumberResult').innerText = '';
 
     localStorage.removeItem("generatedNumber");
+    localStorage.setItem("resetVersion", String(newResetVersion));
 }
