@@ -10,9 +10,19 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (v8 syntax)
+// firebase.initializeApp({
+//   ...firebaseConfig,
+//   databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app"
+// });
 firebase.initializeApp({
-  ...firebaseConfig,
-  databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app"
+  apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
+  authDomain: "gamerandomid-90c54.firebaseapp.com",
+  databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "gamerandomid-90c54",
+  storageBucket: "gamerandomid-90c54.firebasestorage.app",
+  messagingSenderId: "391713152656",
+  appId: "1:391713152656:web:da4d659a3700ca6c814215",
+  measurementId: "G-Q75WSFLQBC"
 });
 
 const database = firebase.database();
