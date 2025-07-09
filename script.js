@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // ✅ ตั้งค่า Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
     authDomain: "gamerandomid-90c54.firebaseapp.com",
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     '1222', '3457'
   ];
 
-  // ✅ เมื่อผู้ใช้ login สำเร็จ
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       document.querySelector(".left").style.display = "none";
@@ -31,31 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 🔐 Email/Password Login
-  window.login = function () {
-    const email = document.getElementById("emailInput").value;
-    const password = document.getElementById("passwordInput").value;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(error => {
-        alert("เข้าสู่ระบบไม่สำเร็จ: " + error.message);
-      });
-  };
-
-  // 🔐 Google Login
   window.googleLogin = function () {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
-      .catch(error => {
-        alert("Google Login ผิดพลาด: " + error.message);
-      });
+      .catch(error => alert("เข้าสู่ระบบไม่สำเร็จ: " + error.message));
   };
 
-  // 🚪 Logout
   window.logout = function () {
-    firebase.auth().signOut().then(() => {
-      location.reload();
-    });
+    firebase.auth().signOut().then(() => location.reload());
   };
 
   function initializeApp(user) {
@@ -64,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentVersion = snapshot.val() || "0";
       checkIfAlreadyGenerated(user.uid, currentVersion);
 
-      // ✅ ปลดล็อกปุ่ม reset ถ้าเป็น admin
       if (user.email === "boonkongmag_00@hotmail.com") {
         document.getElementById('resetButton').disabled = false;
       }
