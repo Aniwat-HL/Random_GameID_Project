@@ -1,22 +1,22 @@
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ตัวเลขที่ตั้งค่าไว้
 
-// ฟังก์ชันตรวจสอบรหัสผ่าน
-function checkPassword() {
-    const correctPassword = "admin123"; // กำหนดรหัสผ่านที่ถูกต้อง
-    const enteredPassword = document.getElementById('passwordInput').value;
+// ฟังก์ชันตรวจสอบ ID ผู้ดูแล
+function checkLogin() {
+    const correctID = "admin123"; // กำหนด ID ที่ถูกต้อง
+    const enteredID = document.getElementById('idInput').value;
 
-    // ตรวจสอบรหัสที่กรอก
-    if (enteredPassword === correctPassword) {
-        // ซ่อนฟอร์มกรอกรหัสและเปลี่ยนเป็นข้อความ
-        document.getElementById('passwordInput').style.display = 'none'; // ซ่อนช่องกรอกรหัส
-        document.getElementById('passwordInput').placeholder = "เข้าสู่ระบบสำเร็จ"; // เปลี่ยนข้อความในช่องกรอก
+    // ตรวจสอบ ID ที่กรอก
+    if (enteredID === correctID) {
+        // ซ่อนฟอร์มกรอก ID และแสดงข้อความ "เข้าสู่ระบบสำเร็จ"
+        document.getElementById('idInput').style.display = 'none'; // ซ่อนช่องกรอกรหัส
+        document.getElementById('idInput').placeholder = "เข้าสู่ระบบสำเร็จ"; // เปลี่ยนข้อความในช่องกรอก
 
         // แสดงปุ่มสุ่มตัวเลขและการควบคุมสำหรับผู้ดูแล
         document.getElementById('generateButton').disabled = false; // เปิดปุ่มสุ่ม
         document.getElementById('resetButton').disabled = false; // เปิดปุ่มรีเซ็ต
     } else {
-        alert('รหัสผ่านไม่ถูกต้อง');
+        alert('ID ไม่ถูกต้อง');
     }
 }
 
