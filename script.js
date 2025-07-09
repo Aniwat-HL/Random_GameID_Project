@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentVersion = snapshot.val() || "0";
       checkIfAlreadyGenerated(user.uid, currentVersion);
 
-      if (user.email === "boonkongmag_00@hotmail.com") {
+      if (user.email === "aniwat.hl.b@gmail.com") {
         document.getElementById('resetButton').disabled = false;
       }
     });
