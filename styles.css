@@ -70,7 +70,9 @@ main.container {
   margin: 40px auto;
   padding: 20px;
   width: 100%;
+  text-align: left;  /* ทำให้ข้อความชิดซ้าย */
 }
+
 
 /* ✅ Footer ชิดล่าง อยู่กลางเสมอ */
 .footer {
