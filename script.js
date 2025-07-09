@@ -23,13 +23,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ ตรวจสอบผู้ใช้ที่ล็อกอิน
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      console.log("User logged in:", user.email); // ตรวจสอบว่าได้ข้อมูลผู้ใช้หรือไม่
       document.getElementById("userHeader").style.display = "flex";
       document.getElementById("userEmail").innerText = user.email;
       document.querySelector(".left").style.display = "none";
       document.querySelector(".right").style.display = "block";
       initializeApp(user);
     } else {
-      // ถ้ายังไม่ได้ล็อกอิน ให้แสดงหน้าล็อกอิน
+      console.log("User not logged in"); // ถ้ายังไม่ได้ล็อกอิน
       document.querySelector(".left").style.display = "block";
       document.querySelector(".right").style.display = "none";
     }
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // ตรวจสอบว่าผู้ใช้เป็นแอดมิน
+    console.log("User Email for reset:", user.email); // ตรวจสอบอีเมล
     const adminEmails = ["aniwat.hl.b@gmail.com", "boonkongmag_00@hotmail.com"];
     if (!adminEmails.includes(user.email.toLowerCase())) {
       alert("คุณไม่มีสิทธิ์รีเซ็ต");
