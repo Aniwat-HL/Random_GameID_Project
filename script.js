@@ -24,20 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ ตรวจสอบผู้ใช้ที่ล็อกอิน
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      // ตรวจสอบว่ามีการแสดงผล "userHeader" และ "left" หรือ "right" แล้ว
-      const userHeader = document.getElementById("userHeader");
-      if (userHeader) {
-        userHeader.style.display = "flex";
-        document.getElementById("userEmail").innerText = user.email;
-      }
-
-      const leftSection = document.querySelector(".left");
-      const rightSection = document.querySelector(".right");
-      if (leftSection && rightSection) {
-        leftSection.style.display = "none";
-        rightSection.style.display = "block";
-      }
-
+      // แสดง userHeader และข้อมูลอีเมลของผู้ใช้
+      document.getElementById("userHeader").style.display = "flex";
+      document.getElementById("userEmail").innerText = user.email;
+      document.querySelector(".left").style.display = "none";
+      document.querySelector(".right").style.display = "block";
       initializeApp(user);
     }
   });
@@ -58,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ ปุ่ม Logout
   window.logout = function () {
     firebase.auth().signOut().then(() => {
-      location.reload(); // รีโหลดหน้าเพื่อให้แสดงผลการออกจากระบบ
+      location.reload(); // รีโหลดหน้าเพื่อให้แสดงผลหลังจาก Logout
     });
   };
 
