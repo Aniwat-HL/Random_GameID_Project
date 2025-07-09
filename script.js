@@ -10,7 +10,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (v8 syntax)
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp({
+  ...firebaseConfig,
+  databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app"
+});
+
 const database = firebase.database();
 
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
