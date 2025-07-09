@@ -12,15 +12,14 @@ function generateRandomNumber() {
         return;
     }
 
-    // สุ่มตัวเลขจากอาเรย์
-    const randomIndex = Math.floor(Math.random() * availableNumbers.length);
-    const randomNumber = availableNumbers[randomIndex];
+    let randomNumber;
+    let randomIndex;
 
-    // ตรวจสอบว่าไอดีนี้ถูกใช้ไปแล้วหรือยัง
-    if (usedNumbers.includes(randomNumber)) {
-        document.getElementById('randomNumberResult').innerText = 'ไอดีนี้ถูกใช้ไปแล้ว';
-        return;
-    }
+    // ตรวจสอบการสุ่มจนกว่าจะเจอไอดีที่ยังไม่ถูกใช้
+    do {
+        randomIndex = Math.floor(Math.random() * availableNumbers.length);
+        randomNumber = availableNumbers[randomIndex];
+    } while (usedNumbers.includes(randomNumber)); // ลูปสุ่มใหม่หากไอดีถูกใช้แล้ว
 
     // แสดงตัวเลขที่สุ่มได้
     document.getElementById('randomNumberResult').innerText = 'ตัวเลขที่สุ่มได้: ' + randomNumber;
