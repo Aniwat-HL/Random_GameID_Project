@@ -6,124 +6,106 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #000000; /* พื้นหลังดำสนิท */
-    color: #ffffff; /* สีตัวอักษรขาว */
+    min-height: 100vh;
 }
 
-
-/* ออกแบบคอนเทนเนอร์ */
+/* คอนเทนเนอร์หลัก */
 .container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 80%;
-    max-width: 1000px;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 960px;
+    background-color: #ffffff;
     padding: 40px;
-    background-color: rgba(0, 0, 0, 0.7); /* พื้นหลังโปร่งใส */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    border-radius: 15px; /* ขอบมน */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    gap: 20px;
 }
 
-/* ฟอร์มกรอกรหัส */
-.left {
-    text-align: center;
-    width: 40%;
+/* กล่องซ้ายและขวา */
+.left, .right {
+    flex: 1;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.3); /* พื้นหลังโปร่งใส */
-    border-radius: 10px;
-}
-
-.right {
-    text-align: center;
-    width: 40%;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.3); /* พื้นหลังโปร่งใส */
-    border-radius: 10px;
-}
-
-/* การจัดการฟอร์มกรอกรหัส */
-input {
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 80%;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.3); /* โปร่งใส */
-    color: #fff;
-}
-
-/* ปุ่มพื้นฐาน */
-button {
-    padding: 12px 30px;
-    font-size: 18px;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    background-color: #4CAF50;
-    color: white;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+/* input */
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* ปุ่ม */
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
     border: none;
-    margin-top: 20px;
+    cursor: pointer;
+    background-color: #1a73e8;
+    color: #fff;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
 }
 
-/* เปลี่ยนสีเมื่อ hover บนปุ่ม */
 button:hover {
-    background-color: #45a049;
-    transform: translateY(-3px); /* ยกปุ่มขึ้น */
+    background-color: #155ab6;
+    transform: translateY(-2px);
 }
 
-/* ปรับปุ่มรีเซ็ต */
+/* ปุ่มรีเซ็ต */
 #resetButton {
-    background-color: #f44336; /* สีแดงสำหรับปุ่มรีเซ็ต */
-    margin-top: 20px;
+    background-color: #d93025;
 }
 
 #resetButton:hover {
-    background-color: #e53935; /* สีแดงเข้มเมื่อ hover */
+    background-color: #b52a1f;
 }
 
-/* ปรับปุ่ม disabled */
+/* ปุ่ม disabled */
 .disabled {
-    background-color: #ff4d4d;
+    background-color: #ccc !important;
     cursor: not-allowed;
 }
 
-/* ปรับการแสดงผล */
+/* ข้อความผลลัพธ์ */
 .result {
-    margin-top: 30px;
-    font-size: 1.5em;
+    margin-top: 20px;
+    font-size: 1.25em;
     font-weight: bold;
-    color: #fff;
+    color: #0a891e;
+    word-wrap: break-word;
 }
-/* ปรับ layout สำหรับมือถือ */
+
+/* Responsive Layout */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-        width: 95%;
         padding: 20px;
     }
 
-    .left,
-    .right {
+    .left, .right {
         width: 100%;
         margin-bottom: 20px;
     }
 
-    input {
-        width: 100%;
-    }
-
-    button {
-        width: 100%;
-    }
-
     .result {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 }
