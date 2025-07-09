@@ -14,7 +14,7 @@
 
   <!-- Header -->
   <header class="app-header">
-    <div class="logo">การพัฒนาโมเดลสถานะฮีโร่แบบปรับเปลี่ยนได้สำหรับการพัฒนาตัวละครแบบไดนามิกในเกมผจญภัย</div>
+    <div class="logo">GameTest - ระบบสุ่มไอดี</div>
     <div id="userHeader" style="display: none;">
       <span id="userEmail"></span>
       <button class="btn logout-btn" onclick="logout()">Logout</button>
@@ -23,16 +23,20 @@
 
   <!-- Main Content -->
   <main class="container">
-    <div class="left">
-      <h2>เข้าสู่ระบบ</h2>
-      <button class="btn login-btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
-    </div>
+    <div class="form-container">
+      <!-- Login Form -->
+      <div class="login-form">
+        <h2>เข้าสู่ระบบ</h2>
+        <button class="btn login-btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
+      </div>
 
-    <div class="right" style="display: none;">
-      <h1>สุ่มไอดีทดสอบ</h1>
-      <button id="generateButton" class="btn generate-btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
-      <button id="resetButton" class="btn generate-btn reset" onclick="resetGame()" disabled>รีเซ็ต (เฉพาะแอดมิน)</button>
-      <div id="randomNumberResult" class="result">ไอดีของคุณจะปรากฏตรงนี้</div>
+      <!-- Generate ID Form -->
+      <div class="generate-form" style="display: none;">
+        <h1>สุ่มไอดีทดสอบ</h1>
+        <button id="generateButton" class="btn generate-btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
+        <button id="resetButton" class="btn reset-btn" onclick="resetGame()" disabled>รีเซ็ต (เฉพาะแอดมิน)</button>
+        <div id="randomNumberResult" class="result">ไอดีของคุณจะปรากฏตรงนี้</div>
+      </div>
     </div>
   </main>
 
