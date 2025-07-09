@@ -8,10 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>กดเพื่อสุ่มตัวเลข</h1>
-        <button class="btn" id="generateButton" onclick="generateRandomNumber()">สุ่มตัวเลข</button>
-        <div class="result" id="randomNumberResult">ผลลัพธ์จะปรากฏที่นี่</div>
-        <div id="gameIDMessage"></div> <!-- เพิ่ม div สำหรับแสดงข้อความ ID -->
+        <h1>กรุณากรอกรหัสเพื่อเข้าสู่การรีเซ็ต</h1>
+        <div id="loginForm">
+            <input type="password" id="passwordInput" placeholder="กรอกรหัสผู้ดูแล" />
+            <button class="btn" onclick="checkPassword()">เข้าสู่ระบบ</button>
+        </div>
+
+        <div id="adminControls" style="display:none;">
+            <button class="btn" id="resetButton" onclick="resetGame()">รีเซ็ตเกม</button>
+            <div id="randomNumberResult">ผลลัพธ์จะปรากฏที่นี่</div>
+        </div>
     </div>
 
     <script src="script.js"></script> <!-- เชื่อมโยงไฟล์ JavaScript -->
