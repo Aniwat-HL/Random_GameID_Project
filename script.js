@@ -19,6 +19,5 @@ function generateRandomNumber() {
     availableNumbers.splice(randomIndex, 1);
 
     // ปิดปุ่มสุ่มตัวเลข
-    document.getElementById('generateButton').classList.add('disabled');
     document.getElementById('generateButton').disabled = true;
 }
