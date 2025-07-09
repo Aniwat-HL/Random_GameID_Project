@@ -18,23 +18,26 @@ const database = firebase.database();
 
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
 
-// ✅ ตรวจสอบว่า resetVersion ใน Firebase เปลี่ยนหรือไม่
 function initializeAppWithResetCheck() {
     const resetVersionRef = database.ref('resetVersion');
 
-    resetVersionRef.once('value').then((snapshot) => {
-        const currentVersion = snapshot.val() || 0;
+    resetVersionRef.on('value', (snapshot) => {
+        const currentVersion = snapshot.val() || "0";
         const localVersion = localStorage.getItem("resetVersion");
 
         if (localVersion !== String(currentVersion)) {
-            // reset local storage ถ้า version ไม่ตรง
+            // ⚠️ reset localStorage ทันทีเมื่อ resetVersion เปลี่ยน
             localStorage.removeItem("generatedNumber");
             localStorage.setItem("resetVersion", String(currentVersion));
-        }
 
-        checkIfAlreadyGenerated();
+            // รีโหลดหน้า (optional) หรือรีเซ็ต UI
+            location.reload(); // ← reload เพื่อให้หน้าเว็บ sync กับ reset
+        }
     });
+
+    checkIfAlreadyGenerated(); // ตรวจสอบว่าปุ่มควรปิดไหม
 }
+
 
 // ✅ ตรวจสอบการเข้าสู่ระบบแอดมิน
 function checkLogin() {
