@@ -1,16 +1,17 @@
-* {
+/* Reset และโครงสร้างหลัก */
+html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body, html {
   height: 100%;
   font-family: 'Segoe UI', 'Roboto', sans-serif;
   background-color: #f4f4f4;
   color: #333;
+  display: flex;
+  flex-direction: column;
 }
 
+/* ✅ Header คงที่ด้านบน */
 .app-header {
   height: 60px;
   background-color: #004d40;
@@ -20,54 +21,67 @@ body, html {
   align-items: center;
   padding: 0 24px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1001;
+  z-index: 1000;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 18px;
-}
-
+/* ✅ กล่องอีเมล + logout */
 .user-header {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
-.user-header span {
-  font-size: 14px;
-}
-
 .logout-btn {
   background-color: #d32f2f;
-  border: none;
   color: white;
+  border: none;
   padding: 4px 12px;
   border-radius: 16px;
   font-size: 13px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 .logout-btn:hover {
   background-color: #b71c1c;
 }
 
-.container {
-  max-width: 1000px;
-  margin: 100px auto 80px;
+/* ✅ Main */
+main.container {
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
   justify-content: center;
+  align-items: start;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 40px auto;
   padding: 20px;
+  width: 100%;
 }
 
+/* ✅ Footer ชิดล่าง อยู่กลางเสมอ */
+.footer {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 14px;
+  background-color: #eeeeee;
+  border-top: 1px solid #ccc;
+  color: #555;
+  width: 100%;
+}
+.footer a {
+  margin-left: 10px;
+  color: #00695c;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ กล่อง login/sum */
 .left, .right {
   flex: 1 1 420px;
+  min-width: 300px;
   background: #fff;
   padding: 30px;
   border-radius: 12px;
@@ -75,68 +89,18 @@ body, html {
   text-align: center;
 }
 
-h1, h2 {
-  margin-bottom: 20px;
-  color: #222;
-}
-
+/* ปุ่มสวย */
 .btn {
   padding: 12px 28px;
   font-size: 16px;
   margin: 10px auto;
+  display: block;
   border-radius: 6px;
   border: none;
   background-color: #2e7d32;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-}
-.btn:hover {
-  background-color: #1b5e20;
 }
 .btn.reset {
   background-color: #c62828;
-}
-.btn.reset:hover {
-  background-color: #b71c1c;
-}
-
-.result {
-  margin-top: 25px;
-  font-size: 1.3em;
-  color: #2e7d32;
-  font-weight: 600;
-}
-
-.footer {
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-  padding: 20px;
-  border-top: 1px solid #ddd;
-  background: #f9f9f9;
-}
-.footer a {
-  color: #00695c;
-  margin: 0 10px;
-  text-decoration: none;
-}
-.footer a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .left, .right {
-    width: 100%;
-  }
-
-  .logo {
-    font-size: 16px;
-  }
 }
