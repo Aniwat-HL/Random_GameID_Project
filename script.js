@@ -40,7 +40,7 @@ function generateRandomNumber() {
     } while (usedNumbers.includes(randomNumber)); // ลูปสุ่มใหม่หากไอดีถูกใช้แล้ว
 
     // แสดงตัวเลขที่สุ่มได้
-    document.getElementById('randomNumberResult').innerText = 'ตัวเลขที่สุ่มได้: ' + randomNumber;
+    document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
 
     // เพิ่มไอดีที่สุ่มแล้วลงใน usedNumbers
     usedNumbers.push(randomNumber);
