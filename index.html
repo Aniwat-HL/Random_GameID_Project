@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ระบบสุ่มไอดี | GameTest</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="index.css" />
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
@@ -24,13 +24,11 @@
   <!-- Main Content -->
   <main class="container">
     <div class="form-container">
-      <!-- Login Form -->
       <div class="login-form">
         <h2>เข้าสู่ระบบ</h2>
         <button class="btn login-btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
       </div>
 
-      <!-- Generate ID Form -->
       <div class="generate-form" style="display: none;">
         <h1>สุ่มไอดีทดสอบ</h1>
         <button id="generateButton" class="btn generate-btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
