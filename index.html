@@ -9,16 +9,18 @@
 <body>
     <div class="container">
         <div class="left">
-            <!-- ฟอร์มกรอกรหัสผ่าน -->
-            <h1>กรุณากรอก ID ผู้ดูแล</h1>
-            <input type="text" id="idInput" placeholder="กรอก ID ผู้ดูแล" />
-            <button class="btn" onclick="checkLogin()">เข้าสู่ระบบ</button>
+            <!-- ฟอร์มกรอกรหัสผ่าน สำหรับ Admin -->
+            <h1>กรุณากรอกรหัสผู้ดูแล</h1>
+            <div id="loginMessage">
+                <input type="text" id="idInput" placeholder="กรอก ID ผู้ดูแล" />
+                <button class="btn" onclick="checkLogin()">เข้าสู่ระบบ</button>
+            </div>
         </div>
 
         <div class="right">
             <!-- ส่วนสุ่มตัวเลข -->
             <h1>สุ่มตัวเลข</h1>
-            <button class="btn" id="generateButton" onclick="generateRandomNumber()" disabled>สุ่มตัวเลข</button> <!-- ปุ่มสุ่มเริ่มต้นเป็น disabled -->
+            <button class="btn" id="generateButton" onclick="generateRandomNumber()">สุ่มตัวเลข</button> <!-- ปุ่มสุ่มตัวเลขใช้งานได้ตลอด -->
             <button class="btn" id="resetButton" onclick="resetGame()" disabled>รีเซ็ต LocalStorage</button> <!-- ปุ่มรีเซ็ตเริ่มต้นเป็น disabled -->
             <div class="result" id="randomNumberResult">ผลลัพธ์จะปรากฏที่นี่</div>
         </div>
