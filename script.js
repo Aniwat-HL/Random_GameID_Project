@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     '1222', '3457'
   ];
 
+  // ✅ ตรวจสอบผู้ใช้ที่ล็อกอิน
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       document.getElementById("userHeader").style.display = "flex";
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // ✅ ระบบล็อกอินด้วย Google
   window.googleLogin = function () {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).catch(err => {
@@ -37,22 +39,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
+  // ✅ ปุ่ม Logout
   window.logout = function () {
     firebase.auth().signOut().then(() => location.reload());
   };
 
+  // ✅ เริ่มใช้งานแอป
   function initializeApp(user) {
     const resetVersionRef = database.ref("resetVersion");
     resetVersionRef.on("value", snapshot => {
       const version = snapshot.val() || "0";
       checkIfAlreadyGenerated(user.uid, version);
 
-      if (user.email === "boonkongmag_00@hotmail.com") {
+      // ✅ เปิดปุ่มรีเซ็ตเฉพาะแอดมิน
+      const adminEmails = ["aniwat.hl.b@gmail.com", "boonkongmag_00@hotmail.com"];
+      if (adminEmails.includes(user.email.toLowerCase())) {
         document.getElementById("resetButton").disabled = false;
       }
     });
   }
 
+  // ✅ เช็คว่าเคยสุ่มไปแล้ว
   function checkIfAlreadyGenerated(uid, version) {
     const ref = database.ref("userNumbers/" + uid);
     ref.once("value").then(snapshot => {
@@ -64,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ✅ ฟังก์ชันสุ่มเลข
   window.generateRandomNumber = function () {
     const user = firebase.auth().currentUser;
     if (!user) return;
@@ -99,21 +107,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
+  // ✅ แสดงผลสุ่ม
   function showResult(num) {
     document.getElementById("randomNumberResult").innerHTML =
       'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + num + '</span>';
   }
 
+  // ✅ ปิดปุ่มสุ่ม
   function disableGenerate() {
     const btn = document.getElementById("generateButton");
     btn.disabled = true;
     btn.classList.add("disabled");
   }
 
+  // ✅ ฟังก์ชันรีเซ็ต
   window.resetGame = function () {
     const user = firebase.auth().currentUser;
-    if (!user || user.email !== "aniwat.hl.b@gmail.com") {
-      alert("เฉพาะแอดมินเท่านั้น");
+    if (!user || !["aniwat.hl.b@gmail.com", "boonkongmag_00@hotmail.com"].includes(user.email.toLowerCase())) {
+      alert("คุณไม่มีสิทธิ์รีเซ็ต");
       return;
     }
 
