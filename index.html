@@ -10,17 +10,25 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
+
+  <!-- ✅ ส่วนแสดงอีเมล + Logout -->
+  <div class="user-header" id="userHeader" style="display: none;">
+    <span id="userEmail"></span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
   <div class="container">
+    <!-- 🔐 Login ด้วย Google -->
     <div class="left">
       <h2>เข้าสู่ระบบ</h2>
       <button class="btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
     </div>
 
+    <!-- 🎲 สุ่มเลข -->
     <div class="right" style="display: none;">
       <h1>สุ่มไอดี</h1>
       <button id="generateButton" class="btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
       <button id="resetButton" class="btn" onclick="resetGame()" disabled>รีเซ็ต (แอดมิน)</button>
-      <button class="btn" onclick="logout()">ออกจากระบบ</button>
       <div id="randomNumberResult" class="result">ไอดีของคุณจะปรากฏตรงนี้</div>
     </div>
   </div>
