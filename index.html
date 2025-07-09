@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random ID Adventure Game</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="sword.png">
-    <!-- เพิ่ม Firebase Auth SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random ID Adventure Game</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="sword.png" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="left">
-            <div id="loginMessage">
-                <label for="idInput">ID ผู้ดูแล</label>
-<input type="text" id="idInput" placeholder="กรอก ID ผู้ดูแล" />
-                <h4>สำหรับผู้ดูแลเท่านั้น</h4>
-                <button class="btn" onclick="checkLogin()">เข้าสู่ระบบ</button>
-            </div>
-        </div>
-
-        <div class="right">
-            <h1>ผู้ใช้งานสุ่มไอดีทดสอบ</h1>
-            <button class="btn" id="generateButton" onclick="generateRandomNumber()">กดสุ่ม</button>
-            <button class="btn" id="resetButton" onclick="resetGame()" disabled>สำหรับผู้ดูแล</button>
-            <div class="result" id="randomNumberResult">ไอดีทดสอบคุณจะขึ้นตรงนี้</div>
-            <h7 style="color: red;">*คำเตือน: ผู้ใช้ 1 คนควรมีแค่ 1 ไอดี ถ้าหากคุณได้ไอดีแล้วไม่ควรสุ่มเพิ่มหรือหาวิธีที่จะสุ่ม*</h7>
-        </div>
+  <div class="container">
+    <div class="left">
+      <h2>เข้าสู่ระบบ</h2>
+      <input type="email" id="emailInput" placeholder="อีเมลผู้ใช้" />
+      <input type="password" id="passwordInput" placeholder="รหัสผ่าน" />
+      <button onclick="login()">เข้าสู่ระบบ</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="right">
+      <h1>สุ่มไอดีทดสอบ</h1>
+      <button id="generateButton" class="btn" onclick="generateRandomNumber()">กดสุ่ม</button>
+      <button id="resetButton" class="btn" onclick="resetGame()" disabled>สำหรับผู้ดูแล</button>
+      <div id="randomNumberResult" class="result">ไอดีทดสอบคุณจะขึ้นตรงนี้</div>
+      <h7 style="color: red;">*คำเตือน: 1 บัญชีสุ่มได้แค่ 1 ครั้ง*</h7>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
