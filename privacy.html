@@ -5,13 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>นโยบายความเป็นส่วนตัว | GameTest</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
 
+  <!-- ✅ HEADER -->
   <header class="app-header">
     <div class="logo">การพัฒนาโมเดลสถานะฮีโร่แบบปรับเปลี่ยนได้สำหรับการพัฒนาตัวละครแบบไดนามิกในเกมผจญภัย</div>
+    <div class="user-header" id="userHeader" style="display: none;">
+      <span id="userEmail"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
   </header>
 
+  <!-- ✅ MAIN -->
   <main class="container">
     <h2>นโยบายความเป็นส่วนตัว</h2>
     <section class="privacy-policy">
@@ -26,9 +35,14 @@
     </section>
   </main>
 
+  <!-- ✅ FOOTER -->
   <footer class="footer">
-    <p>&copy; 2025 Your Company</p>
+    <p>Developing an Adaptive Hero Status Model for Dynamic Character Progression in Adventure Games
+      <a href="#">ติดต่อเรา</a>
+      <a href="#">นโยบายความเป็นส่วนตัว</a>
+    </p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
