@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = snapshot.val();
       if (data && data.version === version) {
         showResult(data.number);
-        disableGenerate(); // เรียก disable generate หลังจากสุ่ม
+        disableGenerate();
       }
     });
   }
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         userRef.set({ number: randomNumber, version });
 
         showResult(randomNumber);
-        disableGenerate(); // ปิดปุ่มสุ่มเมื่อเสร็จ
+        disableGenerate();
       });
     });
   };
@@ -123,11 +123,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ ฟังก์ชันรีเซ็ต
   window.resetGame = function () {
     const user = firebase.auth().currentUser;
-    if (!user || !["aniwat.hl.b@gmail.com", "boonkongmag_00@hotmail.com"].includes(user.email.toLowerCase())) {
+    if (!user) {
+      alert("คุณต้องล็อกอินก่อน");
+      return;
+    }
+
+    // ตรวจสอบว่าผู้ใช้เป็นแอดมิน
+    const adminEmails = ["aniwat.hl.b@gmail.com", "boonkongmag_00@hotmail.com"];
+    if (!adminEmails.includes(user.email.toLowerCase())) {
       alert("คุณไม่มีสิทธิ์รีเซ็ต");
       return;
     }
 
+    // รีเซ็ตข้อมูล
     database.ref("usedNumbers").set([]);
     database.ref("userNumbers").remove();
     const newVersion = Date.now();
