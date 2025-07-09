@@ -87,6 +87,7 @@ main.container {
   border-radius: 12px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.08);
   text-align: center;
+  position: relative; /* เพิ่ม position relative สำหรับการวางปุ่ม */
 }
 
 /* ปุ่มสวย */
@@ -104,11 +105,12 @@ main.container {
 .btn.reset {
   background-color: #c62828;
 }
+
 /* ปรับสไตล์สำหรับปุ่มกลับไปหน้าหลัก */
 .back-to-home {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 20px; /* อยู่ที่ด้านล่างของกล่อง */
+  right: 20px;  /* อยู่ที่มุมขวาของกล่อง */
   padding: 10px 20px;
   background-color: #00695c;
   color: white;
