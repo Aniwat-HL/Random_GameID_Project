@@ -3,7 +3,7 @@ let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ต�
 
 // ฟังก์ชันตรวจสอบ ID สำหรับ Admin
 function checkLogin() {
-    const correctID = "admin123"; // กำหนด ID ที่ถูกต้อง
+    const correctID = "boonkongmag_00@hotmail.com"; // กำหนด ID ที่ถูกต้อง
     const enteredID = document.getElementById('idInput').value;
 
     // ตรวจสอบ ID ที่กรอก
