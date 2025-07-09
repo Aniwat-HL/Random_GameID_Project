@@ -11,6 +11,10 @@
   <!-- ✅ HEADER -->
   <header class="app-header">
     <div class="logo">การพัฒนาโมเดลสถานะฮีโร่แบบปรับเปลี่ยนได้สำหรับการพัฒนาตัวละครแบบไดนามิกในเกมผจญภัย</div>
+    <div class="user-header" id="userHeader" style="display: none;">
+      <span id="userEmail"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
   </header>
 
   <!-- ✅ MAIN -->
@@ -22,10 +26,12 @@
         <li><strong>อีเมล:</strong> s6530611018@phuket.psu.ac.th</li>
         <li><strong>เบอร์โทรศัพท์:</strong> 082-694-0174</li>
       </ul>
+      <!-- ปุ่มกลับไปหน้าหลัก -->
       <button class="back-to-home" onclick="window.location.href='index.html'">กลับไปหน้าหลัก</button>
     </div>
   </main>
 
+  <!-- ✅ FOOTER -->
   <footer class="footer">
     <p>Developing an Adaptive Hero Status Model for Dynamic Character Progression in Adventure Games
       <a href="index.html">กลับไปหน้าแรก</a>
