@@ -26,14 +26,14 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     transform: scale(0.8);
-    animation: fadeIn 1s forwards;
+    animation: fadeIn 1s forwards; /* เพิ่ม animation เมื่อโหลดหน้า */
 }
 
 /* การเคลื่อนไหวของข้อความ title */
 .title {
     font-size: 2.5em;
     margin-bottom: 20px;
-    animation: slideIn 1s ease-out;
+    animation: slideIn 1s ease-out; /* ให้ title เลื่อนเข้ามา */
 }
 
 /* การเคลื่อนไหวของปุ่ม */
@@ -47,7 +47,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: pulse 1.5s infinite;
+    animation: pulse 1.5s infinite; /* ปุ่มจะเด้งๆ อยู่ */
 }
 
 /* เปลี่ยนสีเมื่อ hover บนปุ่ม */
@@ -62,7 +62,7 @@ body {
     font-weight: bold;
     color: #f7f7f7;
     opacity: 0;
-    animation: fadeInText 1s ease-out forwards;
+    animation: fadeInText 1s ease-out forwards; /* ให้ผลลัพธ์ค่อยๆ ปรากฏ */
 }
 
 /* CSS Animation */
@@ -105,4 +105,18 @@ body {
     100% {
         opacity: 1;
     }
+}
+
+/* ปรับการตั้งค่าเบื้องต้นสำหรับปุ่มสุ่มและข้อความผลลัพธ์ */
+.result {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* การตั้งค่าเมื่อปุ่มไม่สามารถกดได้ */
+.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
