@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
 
+  // ✅ กำหนด availableNumbers ในระดับ global
+  const availableNumbers = [
+    '0129', '0248', '0208', '0339', '0679', '0910', '0832',
+    '0745', '0074', '0896', '0011', '0012', '0013', '0014',
+    '0015', '0016', '0564', '0578', '0989', '1290', '3321',
+    '4365', '1123', '3456', '3214', '1423', '9876', '0869',
+    '1222', '3457'
+  ];
+
   // เมื่อผู้ใช้ทำการล็อกอิน
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -23,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // ซ่อนหน้าเข้าสู่ระบบและแสดงหน้าสุ่ม
       document.querySelector(".login-form").style.display = "none";
       document.querySelector(".generate-form").style.display = "block";
-      
+
       // เริ่มต้นการใช้งานแอป
       initializeApp(user);
     } else {
