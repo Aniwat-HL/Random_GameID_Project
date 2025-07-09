@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* ตั้งค่าพื้นหลังให้เรียบง่าย */
+/* ตั้งค่าพื้นหลังที่สะอาดตา */
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -13,84 +13,84 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0; /* พื้นหลังสีอ่อนที่สะอาด */
-    color: #333; /* ตัวอักษรสีดำที่อ่านง่าย */
+    background-color: #f0f0f0;
 }
 
-/* ออกแบบคอนเทนเนอร์ให้ดูเรียบง่ายและมีระเบียบ */
+/* ออกแบบคอนเทนเนอร์ให้ดูเรียบง่าย */
 .container {
-    text-align: center;
-    padding: 40px;
-    background-color: #fff; /* พื้นหลังขาว */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* เงาเบาๆ */
-    border-radius: 10px; /* ขอบมน */
-    width: 350px; /* ขนาดคอนเทนเนอร์ที่เหมาะสม */
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    max-width: 1000px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-/* การเคลื่อนไหวของข้อความ title */
-.title {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: 600;
-    animation: fadeIn 1s ease-out;
+/* ฟอร์มกรอกรหัส */
+.left {
+    text-align: center;
+    width: 40%;
 }
 
-/* ปรับปุ่มสุ่มตัวเลขให้มีดีไซน์ที่เรียบง่าย */
-.btn {
-    background-color: #4CAF50; /* สีเขียวสดใส */
-    color: white;
-    padding: 15px 35px;
+.right {
+    text-align: center;
+    width: 40%;
+}
+
+/* การจัดการฟอร์มกรอกรหัส */
+input {
+    padding: 10px;
     font-size: 18px;
-    border: none;
-    border-radius: 25px; /* ขอบมน */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* ปรับปุ่มรีเซ็ต */
+#resetButton {
+    background-color: #f44336; /* สีแดงสำหรับปุ่มรีเซ็ต */
     margin-top: 20px;
 }
 
-/* เปลี่ยนสีเมื่อ hover บนปุ่ม */
-.btn:hover {
-    background-color: #45a049; /* สีที่เปลี่ยนเมื่อ hover */
-    transform: translateY(-3px); /* เอฟเฟกต์เมื่อ hover */
+#resetButton:hover {
+    background-color: #e53935; /* สีแดงเข้มเมื่อ hover */
 }
 
-/* แสดงผลการสุ่มตัวเลข */
+/* ปรับปุ่ม disabled */
+.disabled {
+    background-color: #ff4d4d;
+    cursor: not-allowed;
+}
+
+/* ปรับการแสดงผล */
 .result {
     margin-top: 30px;
     font-size: 1.5em;
     font-weight: bold;
     color: #333;
-    opacity: 0;
-    animation: fadeInText 1s ease-out forwards;
 }
 
-/* การตั้งค่าเมื่อปุ่มไม่สามารถกดได้ */
-.disabled {
-    background-color: #ff4d4d; /* สีแดงเมื่อปุ่มถูกปิด */
-    cursor: not-allowed; /* เปลี่ยนเคอร์เซอร์ให้ไม่สามารถคลิกได้ */
-}
-
-/* CSS Animation สำหรับ fadeIn */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* การเคลื่อนไหวข้อความ */
-@keyframes fadeInText {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+/* การตั้งค่าคอนเทนเนอร์ในแต่ละฝั่ง */
+.left, .right {
+    width: 45%;
 }
