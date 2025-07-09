@@ -104,3 +104,46 @@ main.container {
 .btn.reset {
   background-color: #c62828;
 }
+
+/* @media Queries สำหรับมือถือ */
+@media (max-width: 768px) {
+  /* ปรับ header */
+  .app-header {
+    height: 50px;
+    padding: 0 16px;
+  }
+
+  .user-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-header .logout-btn {
+    margin-top: 10px;
+  }
+
+  /* ปรับ Main Container */
+  main.container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .left, .right {
+    flex: 1 1 100%;
+    min-width: 0;
+    padding: 20px;
+  }
+
+  /* ปรับปุ่ม */
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  /* ปรับ footer */
+  .footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
