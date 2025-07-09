@@ -86,3 +86,29 @@ html, body {
 .footer a:hover {
   text-decoration: underline;
 }
+/* ปุ่มย้อนกลับ */
+.back-to-home {
+  padding: 12px 28px;
+  font-size: 16px;
+  background-color: #039be5;  /* สีฟ้า */
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: 600;
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.back-to-home:hover {
+  background-color: #0288d1;  /* ฟ้าเข้มเมื่อ hover */
+  transform: scale(1.05);  /* ทำให้ปุ่มขยายขึ้นเล็กน้อยเมื่อ hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* เพิ่มเงาให้ปุ่ม */
+}
+
+.back-to-home:active {
+  background-color: #0277bd;  /* ฟ้าเข้มสุดเมื่อคลิก */
+  transform: scale(1);  /* คืนขนาดปุ่มเมื่อคลิก */
+}
