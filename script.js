@@ -29,12 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const userRef = database.ref("users/" + user.uid);
       userRef.once("value").then(snapshot => {
         if (!snapshot.exists()) {
-          // ถ้าผู้ใช้ยังไม่เคยล็อกอินมาก่อน ให้บันทึกเวลาล็อกอินครั้งแรก
-          const currentTime = new Date().toISOString(); // เวลาปัจจุบันในรูปแบบ ISO
+          // ถ้าผู้ใช้ยังไม่เคยล็อกอินมาก่อน ให้บันทึกเวลาล็อกอินครั้งแรกในเวลาของประเทศไทย
+          const currentTime = new Date();
+          const thailandTime = currentTime.toLocaleString("en-GB", { timeZone: "Asia/Bangkok" }); // เวลาของประเทศไทย
+          
           userRef.set({
-            firstLoginTime: currentTime
+            firstLoginTime: thailandTime
           }).then(() => {
-            console.log("First login time saved to Firebase.");
+            console.log("First login time saved to Firebase in Thailand time.");
           }).catch(err => {
             console.error("Error saving first login time: ", err.message);
           });
