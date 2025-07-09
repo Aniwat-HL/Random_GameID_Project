@@ -4,16 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
     authDomain: "gamerandomid-90c54.firebaseapp.com",
     databaseURL: "https://gamerandomid-90c54-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "gamerandomid-90c54",
-    storageBucket: "gamerandomid-90c54.firebasestorage.app",
+    storageBucket: "gamerandomid-90c54.appspot.com",
     messagingSenderId: "391713152656",
-    appId: "1:391713152656:web:da4d659a3700ca6c814215",
-    measurementId: "G-Q75WSFLQBC"
+    appId: "1:391713152656:web:da4d659a3700ca6c814215"
   };
 
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
 
-  let availableNumbers = [
+  const availableNumbers = [
     '0129', '0248', '0208', '0339', '0679', '0910', '0832',
     '0745', '0074', '0896', '0011', '0012', '0013', '0014',
     '0015', '0016', '0564', '0578', '0989', '1290', '3321',
@@ -23,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      document.getElementById("userEmail").innerText = user.email;
       document.getElementById("userHeader").style.display = "flex";
+      document.getElementById("userEmail").innerText = user.email;
       document.querySelector(".left").style.display = "none";
       document.querySelector(".right").style.display = "block";
       initializeApp(user);
@@ -33,8 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.googleLogin = function () {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-      .catch(error => alert("เข้าสู่ระบบไม่สำเร็จ: " + error.message));
+    firebase.auth().signInWithPopup(provider).catch(err => {
+      alert("เข้าสู่ระบบล้มเหลว: " + err.message);
+    });
   };
 
   window.logout = function () {
@@ -42,24 +42,24 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function initializeApp(user) {
-    const resetVersionRef = database.ref('resetVersion');
-    resetVersionRef.on('value', snapshot => {
-      const currentVersion = snapshot.val() || "0";
-      checkIfAlreadyGenerated(user.uid, currentVersion);
+    const resetVersionRef = database.ref("resetVersion");
+    resetVersionRef.on("value", snapshot => {
+      const version = snapshot.val() || "0";
+      checkIfAlreadyGenerated(user.uid, version);
 
       if (user.email === "boonkongmag_00@hotmail.com") {
-        document.getElementById('resetButton').disabled = false;
+        document.getElementById("resetButton").disabled = false;
       }
     });
   }
 
   function checkIfAlreadyGenerated(uid, version) {
-    const userRef = database.ref("userNumbers/" + uid);
-    userRef.once("value").then(snapshot => {
+    const ref = database.ref("userNumbers/" + uid);
+    ref.once("value").then(snapshot => {
       const data = snapshot.val();
       if (data && data.version === version) {
         showResult(data.number);
-        disableGenerateButton();
+        disableGenerate();
       }
     });
   }
@@ -70,49 +70,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const uid = user.uid;
     const userRef = database.ref("userNumbers/" + uid);
-    const usedNumbersRef = database.ref("usedNumbers");
-    const resetVersionRef = database.ref("resetVersion");
+    const usedRef = database.ref("usedNumbers");
+    const versionRef = database.ref("resetVersion");
 
-    userRef.once('value').then(snapshot => {
+    userRef.once("value").then(snapshot => {
       if (snapshot.exists()) {
-        alert("คุณเคยสุ่มไปแล้ว");
+        alert("คุณสุ่มไปแล้ว");
         return;
       }
 
-      Promise.all([
-        usedNumbersRef.once('value'),
-        resetVersionRef.once('value')
-      ]).then(([usedSnap, resetSnap]) => {
+      Promise.all([usedRef.once("value"), versionRef.once("value")]).then(([usedSnap, versionSnap]) => {
         const usedNumbers = usedSnap.val() || [];
-        const resetVersion = resetSnap.val() || 0;
+        const version = versionSnap.val() || 0;
 
-        if (availableNumbers.length === 0) {
-          document.getElementById('randomNumberResult').innerText = 'ไม่มีตัวเลขให้สุ่มแล้ว';
-          return;
-        }
-
-        let randomNumber, randomIndex;
+        let randomNumber, index;
         do {
-          randomIndex = Math.floor(Math.random() * availableNumbers.length);
-          randomNumber = availableNumbers[randomIndex];
+          index = Math.floor(Math.random() * availableNumbers.length);
+          randomNumber = availableNumbers[index];
         } while (usedNumbers.includes(randomNumber));
 
         usedNumbers.push(randomNumber);
-        usedNumbersRef.set(usedNumbers);
-        userRef.set({ number: randomNumber, version: resetVersion });
+        usedRef.set(usedNumbers);
+        userRef.set({ number: randomNumber, version });
 
         showResult(randomNumber);
-        disableGenerateButton();
+        disableGenerate();
       });
     });
   };
 
-  function showResult(number) {
-    document.getElementById('randomNumberResult').innerHTML =
-      'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + number + '</span>';
+  function showResult(num) {
+    document.getElementById("randomNumberResult").innerHTML =
+      'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + num + '</span>';
   }
 
-  function disableGenerateButton() {
+  function disableGenerate() {
     const btn = document.getElementById("generateButton");
     btn.disabled = true;
     btn.classList.add("disabled");
@@ -121,19 +113,18 @@ document.addEventListener("DOMContentLoaded", function () {
   window.resetGame = function () {
     const user = firebase.auth().currentUser;
     if (!user || user.email !== "boonkongmag_00@hotmail.com") {
-      alert("คุณไม่มีสิทธิ์รีเซ็ต");
+      alert("เฉพาะแอดมินเท่านั้น");
       return;
     }
 
     database.ref("usedNumbers").set([]);
     database.ref("userNumbers").remove();
-
     const newVersion = Date.now();
     database.ref("resetVersion").set(newVersion);
 
     document.getElementById("randomNumberResult").innerHTML = '';
-    const genBtn = document.getElementById("generateButton");
-    genBtn.disabled = false;
-    genBtn.classList.remove("disabled");
+    const btn = document.getElementById("generateButton");
+    btn.disabled = false;
+    btn.classList.remove("disabled");
   };
 });
