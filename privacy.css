@@ -17,8 +17,8 @@ html, body {
   background-color: #00695c;
   color: white;
   display: flex;
-  justify-content: center;
-  align-items: left;
+  justify-content: left;
+  align-items: center;
   padding: 0 24px;
   position: fixed;
   top: 0;
