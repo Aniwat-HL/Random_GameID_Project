@@ -4,37 +4,46 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   font-family: 'Segoe UI', 'Roboto', sans-serif;
   background-color: #f4f4f4;
   color: #333;
-  height: 100vh;
+}
+
+/* ใช้ Flex wrapper ระดับสูงสุด */
+body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 20px;
 }
 
 .container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  width: 90%;
-  max-width: 960px;
+  align-items: stretch;
+  gap: 40px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #fff;
   padding: 40px;
-  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* กล่องซ้าย-ขวาเท่า ๆ กัน */
 .left,
 .right {
-  flex: 1 1 400px;
+  flex: 1 1 420px;
+  min-width: 300px;
   padding: 30px;
   background-color: #f9f9f9;
   border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
   text-align: center;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
 .left h2,
@@ -43,10 +52,12 @@ body {
   color: #222;
 }
 
+/* ปุ่มสวย เรียบ มืออาชีพ */
 button.btn {
   padding: 12px 28px;
   font-size: 16px;
   margin: 10px auto;
+  display: block;
   border-radius: 6px;
   border: 1px solid #ccc;
   background-color: #2e7d32;
@@ -73,6 +84,7 @@ button.disabled {
   color: #2e7d32;
 }
 
+/* Responsive สำหรับมือถือ */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
