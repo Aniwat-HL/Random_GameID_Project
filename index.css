@@ -36,11 +36,11 @@ html, body {
   text-transform: uppercase;
 }
 
+/* Align user email and logout button to the right */
 .user-info {
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 24px;
+  justify-content: flex-end; /* ชิดขวา */
 }
 
 .user-info span {
