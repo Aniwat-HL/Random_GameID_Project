@@ -3,6 +3,10 @@ let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ต�
 
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
+    // ตรวจสอบว่าเคยสุ่มไอดีแล้วหรือยัง
+    const usedNumbers = JSON.parse(localStorage.getItem('usedNumbers')) || [];
+
+    // หากไม่มีตัวเลขให้สุ่มแล้ว
     if (availableNumbers.length === 0) {
         document.getElementById('randomNumberResult').innerText = 'ไม่มีตัวเลขให้สุ่มแล้ว';
         return;
@@ -12,11 +16,20 @@ function generateRandomNumber() {
     const randomIndex = Math.floor(Math.random() * availableNumbers.length);
     const randomNumber = availableNumbers[randomIndex];
 
+    // ตรวจสอบว่าไอดีนี้ถูกใช้ไปแล้วหรือยัง
+    if (usedNumbers.includes(randomNumber)) {
+        document.getElementById('randomNumberResult').innerText = 'ไอดีนี้ถูกใช้ไปแล้ว';
+        return;
+    }
+
     // แสดงตัวเลขที่สุ่มได้
     document.getElementById('randomNumberResult').innerText = 'ตัวเลขที่สุ่มได้: ' + randomNumber;
 
-    // เพิ่มข้อความ ID เข้าทดลองเกม
-    document.getElementById('gameIDMessage').innerText = 'นี่คือ ID เข้าทดลองเกมของคุณ: ' + randomNumber;
+    // เพิ่มไอดีที่สุ่มแล้วลงใน usedNumbers
+    usedNumbers.push(randomNumber);
+
+    // บันทึกข้อมูล usedNumbers ใน localStorage
+    localStorage.setItem('usedNumbers', JSON.stringify(usedNumbers));
 
     // ลบตัวเลขที่สุ่มแล้วออกจากอาเรย์
     availableNumbers.splice(randomIndex, 1);
