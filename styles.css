@@ -11,6 +11,7 @@ html, body {
   flex-direction: column;
   justify-content: center; /* จัดกลางในแนวตั้ง */
   align-items: center; /* จัดกลางในแนวนอน */
+  min-height: 100vh; /* ให้หน้ากระดาษเต็มจอ */
 }
 
 /* ✅ Header คงที่ด้านบน */
@@ -61,6 +62,7 @@ main.container {
   padding: 20px;
   width: 100%;
   text-align: center;
+  min-height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
 }
 
 /* ✅ Main สำหรับหน้า contact และ privacy */
@@ -75,6 +77,7 @@ main.container {
   padding: 20px;
   width: 100%;
   text-align: left; /* ทำให้ข้อความชิดซ้าย */
+  min-height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
 }
 
 /* ✅ Footer */
