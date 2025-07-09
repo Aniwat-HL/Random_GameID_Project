@@ -1,3 +1,6 @@
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 const firebaseConfig = {
   apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
   authDomain: "gamerandomid-90c54.firebaseapp.com",
@@ -9,8 +12,6 @@ const firebaseConfig = {
   measurementId: "G-Q75WSFLQBC"
 };
 
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
 
 let availableNumbers = [
   '0129', '0248', '0208', '0339', '0679', '0910', '0832',
