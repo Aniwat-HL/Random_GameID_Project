@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      document.getElementById("userEmail").innerText = user.email;
+      document.getElementById("userHeader").style.display = "flex";
       document.querySelector(".left").style.display = "none";
       document.querySelector(".right").style.display = "block";
       initializeApp(user);
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentVersion = snapshot.val() || "0";
       checkIfAlreadyGenerated(user.uid, currentVersion);
 
-      if (user.email === "aniwat.hl.b@gmail.com") {
+      if (user.email === "boonkongmag_00@hotmail.com") {
         document.getElementById('resetButton').disabled = false;
       }
     });
