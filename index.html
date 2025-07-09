@@ -3,35 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ระบบสุ่มไอดี</title>
+  <title>ระบบสุ่มไอดี | GameTest</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
 
-  <!-- ✅ ส่วนแสดงอีเมล + Logout -->
-  <div class="user-header" id="userHeader" style="display: none;">
-    <span id="userEmail"></span>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
+  <!-- ✅ Header -->
+  <header class="app-header">
+    <div class="logo">🎮 GameTest ระบบสุ่มไอดี</div>
+    <div class="user-header" id="userHeader" style="display: none;">
+      <span id="userEmail"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </header>
 
-  <div class="container">
-    <!-- 🔐 Login ด้วย Google -->
+  <!-- ✅ Main -->
+  <main class="container">
+    <!-- 🔐 Login Section -->
     <div class="left">
       <h2>เข้าสู่ระบบ</h2>
       <button class="btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
     </div>
 
-    <!-- 🎲 สุ่มเลข -->
+    <!-- 🎲 Random Section -->
     <div class="right" style="display: none;">
-      <h1>สุ่มไอดี</h1>
+      <h1>สุ่มไอดีทดสอบ</h1>
       <button id="generateButton" class="btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
-      <button id="resetButton" class="btn" onclick="resetGame()" disabled>รีเซ็ต (แอดมิน)</button>
+      <button id="resetButton" class="btn reset" onclick="resetGame()" disabled>รีเซ็ต (เฉพาะแอดมิน)</button>
       <div id="randomNumberResult" class="result">ไอดีของคุณจะปรากฏตรงนี้</div>
     </div>
-  </div>
+  </main>
+
+  <!-- ✅ Footer -->
+  <footer class="footer">
+    <p>© 2025 GameTest Thailand. All rights reserved.</p>
+    <a href="#">ติดต่อเรา</a>
+    <a href="#">นโยบายความเป็นส่วนตัว</a>
+  </footer>
 
   <script src="script.js"></script>
 </body>
