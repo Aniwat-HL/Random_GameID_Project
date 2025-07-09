@@ -133,12 +133,14 @@ main.container {
     flex: 1 1 100%;
     min-width: 0;
     padding: 20px;
+    width: 100%; /* ทำให้ทั้งสองกล่องขยายเต็มขนาด */
   }
 
   /* ปรับปุ่ม */
   .btn {
     padding: 10px 20px;
     font-size: 14px;
+    width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
   }
 
   /* ปรับ footer */
