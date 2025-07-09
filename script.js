@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector(".left").style.display = "none";
       document.querySelector(".right").style.display = "block";
       initializeApp(user);
+    } else {
+      // ถ้ายังไม่ได้ล็อกอิน ให้แสดงหน้าล็อกอิน
+      document.querySelector(".left").style.display = "block";
+      document.querySelector(".right").style.display = "none";
     }
   });
 
