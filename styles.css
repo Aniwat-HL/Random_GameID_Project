@@ -45,7 +45,7 @@ html, body {
   background-color: #b71c1c;
 }
 
-/* ✅ Main */
+/* ✅ Main (สำหรับหน้า index) */
 main.container {
   flex: 1;
   display: flex;
@@ -53,6 +53,19 @@ main.container {
   justify-content: center;
   align-items: start;
   gap: 40px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+/* ✅ Main สำหรับหน้า contact และ privacy */
+.contact-container, .privacy-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;  /* ทำให้ข้อความชิดซ้าย */
   max-width: 1000px;
   margin: 40px auto;
   padding: 20px;
@@ -68,11 +81,7 @@ main.container {
   border-top: 1px solid #ccc;
   color: #555;
   width: 100%;
-  position: relative;
-  bottom: 0;
 }
-
-/* ปรับสไตล์สำหรับลิงก์ใน footer */
 .footer a {
   margin-left: 10px;
   color: #00695c;
@@ -91,7 +100,6 @@ main.container {
   border-radius: 12px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.08);
   text-align: center;
-  position: relative;
 }
 
 /* ปุ่มสวย */
@@ -105,21 +113,9 @@ main.container {
   background-color: #2e7d32;
   color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
-
-.btn:hover {
-  background-color: #1b5e20;
-  transform: translateY(-2px);
-}
-
 .btn.reset {
   background-color: #c62828;
-}
-
-.btn.reset:hover {
-  background-color: #b71c1c;
-  transform: translateY(-2px);
 }
 
 /* ปรับสไตล์สำหรับปุ่มกลับไปหน้าหลัก */
@@ -135,12 +131,10 @@ main.container {
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: all 0.3s ease;
 }
 
 .back-to-home:hover {
   background-color: #004d40;
-  transform: translateY(-2px);
 }
 
 /* @media Queries สำหรับมือถือ */
@@ -160,7 +154,15 @@ main.container {
     margin-top: 10px;
   }
 
-  /* ปรับ Main Container */
+  /* ปรับ Main Container สำหรับหน้า contact และ privacy */
+  .contact-container, .privacy-container {
+    flex-direction: column;
+    align-items: flex-start;  /* ทำให้ข้อความชิดซ้าย */
+    gap: 20px;
+    padding: 10px;
+  }
+
+  /* ปรับ Main Container สำหรับหน้า index */
   main.container {
     flex-direction: column;
     gap: 20px;
