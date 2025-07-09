@@ -1,6 +1,23 @@
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ตัวเลขที่ตั้งค่าไว้
 
+// ฟังก์ชันตรวจสอบรหัสผ่าน
+function checkPassword() {
+    const correctPassword = "admin123"; // กำหนดรหัสผ่านที่ถูกต้อง
+    const enteredPassword = document.getElementById('passwordInput').value;
+
+    // ตรวจสอบรหัสที่กรอก
+    if (enteredPassword === correctPassword) {
+        // ซ่อนฟอร์มกรอกรหัส
+        document.getElementById('loginForm').style.display = 'none';
+
+        // แสดงปุ่มรีเซ็ตและการควบคุมสำหรับผู้ดูแล
+        document.getElementById('adminControls').style.display = 'block';
+    } else {
+        alert('รหัสผ่านไม่ถูกต้อง');
+    }
+}
+
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
     // ตรวจสอบว่าเคยสุ่มไอดีแล้วหรือยัง
@@ -36,4 +53,18 @@ function generateRandomNumber() {
     // ปิดปุ่มสุ่มตัวเลข
     document.getElementById('generateButton').disabled = true;
     document.getElementById('generateButton').classList.add('disabled'); // เพิ่มคลาส disabled เพื่อให้ปุ่มดูเหมือนถูกปิด
+}
+
+// ฟังก์ชันรีเซ็ตการใช้งาน
+function resetGame() {
+    // คืนค่าอาเรย์ตัวเลขที่ใช้ได้ใหม่
+    availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
+
+    // ล้างข้อมูล usedNumbers ใน localStorage
+    localStorage.removeItem('usedNumbers');
+
+    // เปิดปุ่มสุ่มตัวเลขและปิดปุ่มรีเซ็ต
+    document.getElementById('generateButton').disabled = false;
+    document.getElementById('generateButton').classList.remove('disabled'); // เปิดปุ่มสุ่ม
+    document.getElementById('randomNumberResult').innerText = ''; // ล้างผลลัพธ์ที่แสดง
 }
