@@ -51,7 +51,6 @@ function checkIfAlreadyGenerated() {
     }
 }
 
-
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
     const usedNumbersRef = database.ref('usedNumbers');
@@ -81,7 +80,6 @@ function generateRandomNumber() {
         document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
 
         // บันทึกลง localStorage
-        localStorage.setItem("alreadyGenerated", "true");
         localStorage.setItem("generatedNumber", randomNumber);
 
         usedNumbers.push(randomNumber);
@@ -106,6 +104,5 @@ function resetGame() {
     document.getElementById('randomNumberResult').innerText = '';
 
     // เคลียร์ localStorage
-    localStorage.removeItem("alreadyGenerated");
     localStorage.removeItem("generatedNumber");
 }
