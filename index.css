@@ -39,7 +39,8 @@ html, body {
 .user-info {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* ชิดขวา */
+  position: absolute;
+  right: 24px;
 }
 
 .user-info span {
