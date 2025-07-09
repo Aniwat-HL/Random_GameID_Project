@@ -41,7 +41,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: flex-end; /* ชิดขวา */
-  margin-right: 20px;  /* เพิ่ม margin-right เพื่อขยับเข้ามา */
+  margin-right: 40px;  /* เพิ่ม margin-right เพื่อขยับเข้ามา */
 }
 
 .user-info span {
