@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
 
   // ✅ กำหนด availableNumbers ในระดับ global
@@ -25,6 +25,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // เมื่อผู้ใช้ทำการล็อกอิน
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      // ตรวจสอบว่าผู้ใช้เคยล็อกอินครั้งแรกหรือไม่
+      const userRef = database.ref("users/" + user.uid);
+      userRef.once("value").then(snapshot => {
+        if (!snapshot.exists()) {
+          // ถ้าผู้ใช้ยังไม่เคยล็อกอินมาก่อน ให้บันทึกเวลาล็อกอินครั้งแรก
+          const currentTime = new Date().toISOString(); // เวลาปัจจุบันในรูปแบบ ISO
+          userRef.set({
+            firstLoginTime: currentTime
+          }).then(() => {
+            console.log("First login time saved to Firebase.");
+          }).catch(err => {
+            console.error("Error saving first login time: ", err.message);
+          });
+        }
+      });
+
       // แสดง userHeader และข้อมูลอีเมลของผู้ใช้
       document.getElementById("userHeader").style.display = "flex";
       document.getElementById("userEmail").innerText = user.email;
