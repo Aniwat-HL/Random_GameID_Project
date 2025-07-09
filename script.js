@@ -1,3 +1,18 @@
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCLBpdYKS5YUoMvY6eENWlupnOXUP6qCnE",
+  authDomain: "randomgameid-39683.firebaseapp.com",
+  projectId: "randomgameid-39683",
+  storageBucket: "randomgameid-39683.firebasestorage.app",
+  messagingSenderId: "789303941529",
+  appId: "1:789303941529:web:2c7b66a38868a914f59b08",
+  measurementId: "G-WCQRRXBMGN"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 // อาเรย์ของตัวเลขที่เราตั้งค่าไว้ล่วงหน้า
 let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999']; // ตัวเลขที่ตั้งค่าไว้
 
@@ -8,7 +23,7 @@ function checkLogin() {
 
     // ตรวจสอบ ID ที่กรอก
     if (enteredID === correctID) {
-        // ซ่อนฟอร์มกรอก ID และแสดงข้อความ "เข้าสู่ระบบสำเร็จ"
+        // ซ่อนฟอร์มกรอกรหัส และแสดงข้อความ "เข้าสู่ระบบสำเร็จ"
         document.getElementById('idInput').style.display = 'none'; // ซ่อนช่องกรอกรหัส
         document.getElementById('loginMessage').innerHTML = "<h2>เข้าสู่ระบบสำเร็จ</h2>"; // เปลี่ยนข้อความในช่องกรอก
 
@@ -21,39 +36,43 @@ function checkLogin() {
 
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
-    // ตรวจสอบว่าเคยสุ่มไอดีแล้วหรือยัง
-    const usedNumbers = JSON.parse(localStorage.getItem('usedNumbers')) || [];
+    // ดึงข้อมูลที่ใช้แล้วจาก Firebase
+    const usedNumbersRef = database.ref('usedNumbers');
 
-    // หากไม่มีตัวเลขให้สุ่มแล้ว
-    if (availableNumbers.length === 0) {
-        document.getElementById('randomNumberResult').innerText = 'ไม่มีตัวเลขให้สุ่มแล้ว';
-        return;
-    }
+    usedNumbersRef.once('value', (snapshot) => {
+        const usedNumbers = snapshot.val() || [];
 
-    let randomNumber;
-    let randomIndex;
+        // หากไม่มีตัวเลขให้สุ่มแล้ว
+        if (availableNumbers.length === 0) {
+            document.getElementById('randomNumberResult').innerText = 'ไม่มีตัวเลขให้สุ่มแล้ว';
+            return;
+        }
 
-    // ตรวจสอบการสุ่มจนกว่าจะเจอไอดีที่ยังไม่ถูกใช้
-    do {
-        randomIndex = Math.floor(Math.random() * availableNumbers.length);
-        randomNumber = availableNumbers[randomIndex];
-    } while (usedNumbers.includes(randomNumber)); // ลูปสุ่มใหม่หากไอดีถูกใช้แล้ว
+        let randomNumber;
+        let randomIndex;
 
-    // แสดงตัวเลขที่สุ่มได้
-    document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
+        // ตรวจสอบการสุ่มจนกว่าจะเจอไอดีที่ยังไม่ถูกใช้
+        do {
+            randomIndex = Math.floor(Math.random() * availableNumbers.length);
+            randomNumber = availableNumbers[randomIndex];
+        } while (usedNumbers.includes(randomNumber)); // ลูปสุ่มใหม่หากไอดีถูกใช้แล้ว
 
-    // เพิ่มไอดีที่สุ่มแล้วลงใน usedNumbers
-    usedNumbers.push(randomNumber);
+        // แสดงตัวเลขที่สุ่มได้
+        document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
 
-    // บันทึกข้อมูล usedNumbers ใน localStorage
-    localStorage.setItem('usedNumbers', JSON.stringify(usedNumbers));
+        // เพิ่มไอดีที่สุ่มแล้วลงใน usedNumbers
+        usedNumbers.push(randomNumber);
 
-    // ลบตัวเลขที่สุ่มแล้วออกจากอาเรย์
-    availableNumbers.splice(randomIndex, 1);
+        // บันทึกข้อมูล usedNumbers ใน Firebase
+        usedNumbersRef.set(usedNumbers);
 
-    // ปิดปุ่มสุ่มตัวเลข
-    document.getElementById('generateButton').disabled = true;
-    document.getElementById('generateButton').classList.add('disabled'); // เพิ่มคลาส disabled เพื่อให้ปุ่มดูเหมือนถูกปิด
+        // ลบตัวเลขที่สุ่มแล้วออกจากอาเรย์
+        availableNumbers.splice(randomIndex, 1);
+
+        // ปิดปุ่มสุ่มตัวเลข
+        document.getElementById('generateButton').disabled = true;
+        document.getElementById('generateButton').classList.add('disabled');
+    });
 }
 
 // ฟังก์ชันรีเซ็ตการใช้งาน
@@ -61,11 +80,12 @@ function resetGame() {
     // คืนค่าอาเรย์ตัวเลขที่ใช้ได้ใหม่
     availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
 
-    // ล้างข้อมูล usedNumbers ใน localStorage
-    localStorage.removeItem('usedNumbers');
+    // ล้างข้อมูล usedNumbers ใน Firebase
+    const usedNumbersRef = database.ref('usedNumbers');
+    usedNumbersRef.remove();
 
     // เปิดปุ่มสุ่มตัวเลขและปิดปุ่มรีเซ็ต
     document.getElementById('generateButton').disabled = false;
-    document.getElementById('generateButton').classList.remove('disabled'); // เปิดปุ่มสุ่ม
+    document.getElementById('generateButton').classList.remove('disabled');
     document.getElementById('randomNumberResult').innerText = ''; // ล้างผลลัพธ์ที่แสดง
 }
