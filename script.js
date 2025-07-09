@@ -87,4 +87,53 @@ function generateRandomNumber() {
       const usedNumbers = usedSnap.val() || [];
       const resetVersion = resetSnap.val() || 0;
 
-      if (availableNumbers.length ===
+      if (availableNumbers.length === 0) {
+        document.getElementById('randomNumberResult').innerText = 'ไม่มีตัวเลขให้สุ่มแล้ว';
+        return;
+      }
+
+      let randomNumber, randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * availableNumbers.length);
+        randomNumber = availableNumbers[randomIndex];
+      } while (usedNumbers.includes(randomNumber));
+
+      usedNumbers.push(randomNumber);
+      usedNumbersRef.set(usedNumbers);
+      userRef.set({ number: randomNumber, version: resetVersion });
+
+      showResult(randomNumber);
+      disableGenerateButton();
+    });
+  });
+}
+
+function showResult(number) {
+  document.getElementById('randomNumberResult').innerHTML =
+    'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + number + '</span>';
+}
+
+function disableGenerateButton() {
+  const btn = document.getElementById("generateButton");
+  btn.disabled = true;
+  btn.classList.add("disabled");
+}
+
+function resetGame() {
+  const user = firebase.auth().currentUser;
+  if (!user || user.email !== "boonkongmag_00@hotmail.com") {
+    alert("คุณไม่มีสิทธิ์รีเซ็ต");
+    return;
+  }
+
+  database.ref("usedNumbers").set([]);
+  database.ref("userNumbers").remove();
+
+  const newVersion = Date.now();
+  database.ref("resetVersion").set(newVersion);
+
+  document.getElementById("randomNumberResult").innerHTML = '';
+  const genBtn = document.getElementById("generateButton");
+  genBtn.disabled = false;
+  genBtn.classList.remove("disabled");
+}
