@@ -39,7 +39,6 @@ function checkLogin() {
 
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
-    // ดึงข้อมูลที่ใช้แล้วจาก Firebase
     const usedNumbersRef = ref(database, 'usedNumbers');
     
     get(usedNumbersRef).then((snapshot) => {
