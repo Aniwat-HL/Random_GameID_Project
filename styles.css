@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #fff;
+  background-color: #f4f4f4;
   color: #333;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ html, body {
 .app-header {
   height: 60px;
   background-color: #00695c;
-  color: #fff;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,12 +26,14 @@ html, body {
   right: 0;
   z-index: 1000;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   font-size: 1.5em;
   font-weight: bold;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* Main Content */
@@ -46,10 +48,26 @@ html, body {
   text-align: center;
 }
 
-.container h2, .left h2 {
+/* Content inside left block (for contact and privacy pages) */
+.left {
+  text-align: left;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Headings */
+h2, h3 {
   font-size: 2em;
   color: #00695c;
   margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
 }
 
 p, ul {
@@ -69,6 +87,7 @@ p, ul {
   left: 0;
   right: 0;
   width: 100%;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .footer a {
@@ -96,47 +115,47 @@ p, ul {
 
 /* ปุ่ม Login */
 .btn.login-btn {
-  background-color: #00695c;
+  background-color: #388e3c; /* สีเขียว */
   color: white;
 }
 
 .btn.login-btn:hover {
-  background-color: #004d40;
+  background-color: #2c6e31; /* เขียวเข้ม */
 }
 
 /* ปุ่ม Logout */
 .btn.logout-btn {
-  background-color: #d32f2f;
+  background-color: #d32f2f; /* สีแดง */
   color: white;
 }
 
 .btn.logout-btn:hover {
-  background-color: #b71c1c;
+  background-color: #b71c1c; /* สีแดงเข้ม */
 }
 
 /* ปุ่มสุ่ม */
 .btn.generate-btn {
-  background-color: #388e3c;
+  background-color: #388e3c; /* สีเขียว */
   color: white;
 }
 
 .btn.generate-btn:hover {
-  background-color: #2c6e31;
+  background-color: #2c6e31; /* เขียวเข้ม */
 }
 
 /* ปุ่มสุ่มหลังสุ่มแล้ว */
 .btn.generate-btn.disabled {
-  background-color: #d32f2f;
+  background-color: #d32f2f; /* สีแดงเมื่อสุ่มแล้ว */
 }
 
 /* ปุ่มย้อนกลับ */
 .btn.back-to-home {
-  background-color: #039be5;
+  background-color: #039be5; /* สีฟ้า */
   color: white;
 }
 
 .btn.back-to-home:hover {
-  background-color: #0288d1;
+  background-color: #0288d1; /* ฟ้าเข้ม */
 }
 
 /* Responsive Design */
