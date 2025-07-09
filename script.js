@@ -25,25 +25,39 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ เมื่อผู้ใช้ login สำเร็จ
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      document.querySelector(".left").style.display = "none";
+      document.querySelector(".right").style.display = "block";
       initializeApp(user);
     }
   });
 
-  // 🔐 ฟังก์ชัน login
+  // 🔐 Email/Password Login
   window.login = function () {
     const email = document.getElementById("emailInput").value;
     const password = document.getElementById("passwordInput").value;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
-        // Success — onAuthStateChanged จะทำงานต่อ
-      })
       .catch(error => {
         alert("เข้าสู่ระบบไม่สำเร็จ: " + error.message);
       });
   };
 
-  // ✅ เช็คและโหลดข้อมูลหลัง login
+  // 🔐 Google Login
+  window.googleLogin = function () {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .catch(error => {
+        alert("Google Login ผิดพลาด: " + error.message);
+      });
+  };
+
+  // 🚪 Logout
+  window.logout = function () {
+    firebase.auth().signOut().then(() => {
+      location.reload();
+    });
+  };
+
   function initializeApp(user) {
     const resetVersionRef = database.ref('resetVersion');
     resetVersionRef.on('value', snapshot => {
@@ -57,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ✅ ตรวจสอบว่าผู้ใช้คนนี้เคยสุ่มแล้วหรือยัง
   function checkIfAlreadyGenerated(uid, version) {
     const userRef = database.ref("userNumbers/" + uid);
     userRef.once("value").then(snapshot => {
@@ -69,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ✅ กดปุ่มเพื่อสุ่มเลข
   window.generateRandomNumber = function () {
     const user = firebase.auth().currentUser;
     if (!user) return;
@@ -113,20 +125,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
-  // ✅ แสดงผลลัพธ์
   function showResult(number) {
     document.getElementById('randomNumberResult').innerHTML =
       'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + number + '</span>';
   }
 
-  // ✅ ปิดปุ่มสุ่ม
   function disableGenerateButton() {
     const btn = document.getElementById("generateButton");
     btn.disabled = true;
     btn.classList.add("disabled");
   }
 
-  // 🔁 สำหรับ admin: reset ระบบ
   window.resetGame = function () {
     const user = firebase.auth().currentUser;
     if (!user || user.email !== "boonkongmag_00@hotmail.com") {
