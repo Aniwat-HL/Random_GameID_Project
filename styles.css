@@ -48,7 +48,7 @@ html, body {
   background-color: #b71c1c;
 }
 
-/* ✅ Main (สำหรับหน้า index) */
+/* ✅ Main */
 main.container {
   flex: 1;
   display: flex;
@@ -87,11 +87,13 @@ main.container {
   color: #555;
   width: 100%;
 }
+
 .footer a {
   margin-left: 10px;
   color: #00695c;
   text-decoration: none;
 }
+
 .footer a:hover {
   text-decoration: underline;
 }
