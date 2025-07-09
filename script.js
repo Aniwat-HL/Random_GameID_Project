@@ -83,4 +83,7 @@ function resetGame() {
     usedNumbersRef.set([]);
 
     // เปิดปุ่มสุ่มตัวเลขและปิดปุ่มรีเซ็ต
-    document.getElementById('generateButton
+    document.getElementById('generateButton').disabled = false;
+    document.getElementById('generateButton').classList.remove('disabled');
+    document.getElementById('randomNumberResult').innerText = ''; // ล้างผลลัพธ์ที่แสดง
+}
