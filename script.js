@@ -93,7 +93,8 @@ function generateRandomNumber() {
             randomNumber = availableNumbers[randomIndex];
         } while (usedNumbers.includes(randomNumber));
 
-        document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + randomNumber;
+        document.getElementById('randomNumberResult').innerHTML =
+  'ไอดีทดสอบของคุณคือ : <span style="color: green;">' + storedNumber + '</span>';
 
         // 👉 บันทึกไว้ใน localStorage พร้อม resetVersion
         localStorage.setItem("generatedNumber", randomNumber);
