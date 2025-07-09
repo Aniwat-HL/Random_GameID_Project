@@ -34,9 +34,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ ระบบล็อกอินด้วย Google
   window.googleLogin = function () {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).catch(err => {
-      alert("เข้าสู่ระบบล้มเหลว: " + err.message);
-    });
+    firebase.auth().signInWithPopup(provider)
+      .then(result => {
+        console.log("Login successful", result); // ตรวจสอบผลการเข้าสู่ระบบ
+      })
+      .catch(err => {
+        console.error("เข้าสู่ระบบล้มเหลว:", err.message); // ตรวจสอบข้อผิดพลาด
+        alert("เข้าสู่ระบบล้มเหลว: " + err.message);
+      });
   };
 
   // ✅ ปุ่ม Logout
