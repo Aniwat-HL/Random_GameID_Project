@@ -16,7 +16,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-let availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
+let availableNumbers = ['0129', '0248', '0208', '0339', '0679', '0910', '0832', '0745', '0074', '0869', '0011', '0012', '0013', '0014', '0015', '0016', '0564', '0578', '0989', '1290', '3321', '4365', '1123', '3456', '3214', '1423', '9876', '0869', '1222', '3457'];
 
 function initializeAppWithResetCheck() {
     const resetVersionRef = database.ref('resetVersion');
@@ -113,7 +113,7 @@ document.getElementById('randomNumberResult').innerHTML =
 
 // ✅ ฟังก์ชันรีเซ็ต (admin ใช้งานเท่านั้น)
 function resetGame() {
-    availableNumbers = ['0001', '0219', '0293', '0345', '0567', '0999'];
+    availableNumbers = ['0129', '0248', '0208', '0339', '0679', '0910', '0832', '0745', '0074', '0869', '0011', '0012', '0013', '0014', '0015', '0016', '0564', '0578', '0989', '1290', '3321', '4365', '1123', '3456', '3214', '1423', '9876', '0869', '1222', '3457'];
 
     // 🔄 ล้าง usedNumbers + ตั้ง resetVersion ใหม่ (timestamp)
     const usedNumbersRef = database.ref('usedNumbers');
