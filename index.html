@@ -8,16 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>กรุณากรอกรหัสผู้ดูแล</h1>
         <!-- ฟอร์มกรอกรหัสผ่าน -->
         <div id="loginForm">
+            <h1>กรุณากรอกรหัสผู้ดูแล</h1>
             <input type="password" id="passwordInput" placeholder="กรอกรหัสผู้ดูแล" />
             <button class="btn" onclick="checkPassword()">เข้าสู่ระบบ</button>
         </div>
 
-        <!-- ปุ่มรีเซ็ตจะแสดงเมื่อกรอกรหัสผ่านถูกต้อง -->
-        <div id="adminControls" style="display:none;">
-            <button class="btn" id="resetButton" onclick="resetGame()">รีเซ็ต LocalStorage</button>
+        <!-- ปุ่มสุ่มตัวเลขและรีเซ็ตแสดงเมื่อกรอกรหัสผ่านถูกต้อง -->
+        <div id="gameControls" style="display:none;">
+            <h1>สุ่มตัวเลข</h1>
+            <button class="btn" id="generateButton" onclick="generateRandomNumber()">สุ่มตัวเลข</button>
+            <button class="btn" id="resetButton" onclick="resetGame()">รีเซ็ต LocalStorage</button> <!-- ปุ่มรีเซ็ต -->
             <div class="result" id="randomNumberResult">ผลลัพธ์จะปรากฏที่นี่</div>
         </div>
     </div>
