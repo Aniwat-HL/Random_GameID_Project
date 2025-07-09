@@ -8,7 +8,7 @@ html, body {
   color: #333;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;  /* ให้สูงสุดเต็มหน้าจอ */
+  min-height: 100vh;
 }
 
 /* Header */
@@ -20,16 +20,22 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
-  position: fixed; /* ติดอยู่ที่ด้านบน */
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;  /* ทำให้เต็มความกว้าง */
+  right: 0;
   z-index: 1000;
-  width: 100%;  /* ทำให้เต็มหน้าจอ */
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 /* Main Content */
-.container {
+.container, .contact-container, .privacy-container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -40,10 +46,16 @@ html, body {
   text-align: center;
 }
 
-.container h2 {
+.container h2, .left h2 {
   font-size: 2em;
   color: #00695c;
   margin-bottom: 20px;
+}
+
+p, ul {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #555;
 }
 
 /* Footer */
@@ -52,14 +64,13 @@ html, body {
   padding: 20px;
   background-color: #eeeeee;
   color: #555;
-  position: fixed; /* ติดอยู่ที่ด้านล่าง */
+  position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;  /* ทำให้เต็มความกว้าง */
-  width: 100%;  /* ทำให้เต็มหน้าจอ */
+  right: 0;
+  width: 100%;
 }
 
-/* Footer Links */
 .footer a {
   margin-left: 10px;
   color: #00695c;
@@ -75,18 +86,57 @@ html, body {
 .btn {
   padding: 12px 24px;
   font-size: 16px;
-  background-color: #00695c;
-  color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
   display: inline-block;
   margin: 10px auto;
+  transition: background-color 0.3s;
 }
 
-.btn:hover {
+/* ปุ่ม Login */
+.btn.login-btn {
+  background-color: #00695c;
+  color: white;
+}
+
+.btn.login-btn:hover {
   background-color: #004d40;
+}
+
+/* ปุ่ม Logout */
+.btn.logout-btn {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.btn.logout-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* ปุ่มสุ่ม */
+.btn.generate-btn {
+  background-color: #388e3c;
+  color: white;
+}
+
+.btn.generate-btn:hover {
+  background-color: #2c6e31;
+}
+
+/* ปุ่มสุ่มหลังสุ่มแล้ว */
+.btn.generate-btn.disabled {
+  background-color: #d32f2f;
+}
+
+/* ปุ่มย้อนกลับ */
+.btn.back-to-home {
+  background-color: #039be5;
+  color: white;
+}
+
+.btn.back-to-home:hover {
+  background-color: #0288d1;
 }
 
 /* Responsive Design */
