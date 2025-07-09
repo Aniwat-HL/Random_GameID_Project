@@ -104,6 +104,24 @@ main.container {
 .btn.reset {
   background-color: #c62828;
 }
+/* ปรับสไตล์สำหรับปุ่มกลับไปหน้าหลัก */
+.back-to-home {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #00695c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.back-to-home:hover {
+  background-color: #004d40;
+}
 
 /* @media Queries สำหรับมือถือ */
 @media (max-width: 768px) {
