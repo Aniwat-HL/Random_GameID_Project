@@ -4,42 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ระบบสุ่มไอดี | GameTest</title>
-  <!-- โหลด Firebase SDK -->
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-  <script src="script.js"></script> <!-- เพิ่มสคริปต์ที่ใช้ -->
-  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js"></script>
 </head>
 <body>
 
-  <!-- ✅ HEADER -->
+  <!-- Header -->
   <header class="app-header">
     <div class="logo">การพัฒนาโมเดลสถานะฮีโร่แบบปรับเปลี่ยนได้สำหรับการพัฒนาตัวละครแบบไดนามิกในเกมผจญภัย</div>
-
-    <!-- เพิ่ม userHeader -->
     <div id="userHeader" style="display: none;">
       <span id="userEmail"></span>
       <button class="btn logout-btn" onclick="logout()">Logout</button>
     </div>
   </header>
 
-  <!-- ✅ MAIN -->
+  <!-- Main Content -->
   <main class="container">
     <div class="left">
       <h2>เข้าสู่ระบบ</h2>
-      <button class="btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
+      <button class="btn login-btn" onclick="googleLogin()">เข้าสู่ระบบด้วย Google</button>
     </div>
 
     <div class="right" style="display: none;">
       <h1>สุ่มไอดีทดสอบ</h1>
-      <button id="generateButton" class="btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
-      <button id="resetButton" class="btn reset" onclick="resetGame()" disabled>รีเซ็ต (เฉพาะแอดมิน)</button>
+      <button id="generateButton" class="btn generate-btn" onclick="generateRandomNumber()">กดเพื่อสุ่ม</button>
+      <button id="resetButton" class="btn generate-btn reset" onclick="resetGame()" disabled>รีเซ็ต (เฉพาะแอดมิน)</button>
       <div id="randomNumberResult" class="result">ไอดีของคุณจะปรากฏตรงนี้</div>
     </div>
   </main>
 
-  <!-- ✅ FOOTER -->
+  <!-- Footer -->
   <footer class="footer">
     <p>Developing an Adaptive Hero Status Model for Dynamic Character Progression in Adventure Games
       <a href="index.html">กลับไปหน้าแรก</a>
