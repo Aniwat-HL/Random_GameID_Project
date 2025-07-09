@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.resetGame = function () {
     const user = firebase.auth().currentUser;
-    if (!user || user.email !== "boonkongmag_00@hotmail.com") {
+    if (!user || user.email !== "aniwat.hl.b@gmail.com") {
       alert("เฉพาะแอดมินเท่านั้น");
       return;
     }
