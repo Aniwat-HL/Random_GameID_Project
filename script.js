@@ -35,16 +35,22 @@ function checkLogin() {
     }
 }
 
-// ฟังก์ชันตรวจสอบว่ามีการสุ่มไปแล้วหรือยัง
 function checkIfAlreadyGenerated() {
     const storedNumber = localStorage.getItem("generatedNumber");
 
     if (storedNumber) {
+        // แสดงเลขเก่า
         document.getElementById('randomNumberResult').innerText = 'ไอดีทดสอบที่คุณได้: ' + storedNumber;
-        document.getElementById('generateButton').disabled = true;
-        document.getElementById('generateButton').classList.add('disabled');
+
+        // ปิดปุ่มสุ่ม
+        const genBtn = document.getElementById('generateButton');
+        if (genBtn) {
+            genBtn.disabled = true;
+            genBtn.classList.add('disabled');
+        }
     }
 }
+
 
 // ฟังก์ชันสุ่มตัวเลข
 function generateRandomNumber() {
