@@ -117,6 +117,6 @@ body {
 
 /* การตั้งค่าเมื่อปุ่มไม่สามารถกดได้ */
 .disabled {
-    background-color: #ccc;
+    background-color: #ff4d4d;
     cursor: not-allowed;
 }
