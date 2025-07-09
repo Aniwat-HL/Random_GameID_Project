@@ -1,12 +1,12 @@
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCLBpdYKS5YUoMvY6eENWlupnOXUP6qCnE",
-  authDomain: "randomgameid-39683.firebaseapp.com",
-  projectId: "randomgameid-39683",
-  storageBucket: "randomgameid-39683.firebasestorage.app",
-  messagingSenderId: "789303941529",
-  appId: "1:789303941529:web:2c7b66a38868a914f59b08",
-  measurementId: "G-WCQRRXBMGN"
+  apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
+  authDomain: "gamerandomid-90c54.firebaseapp.com",
+  projectId: "gamerandomid-90c54",
+  storageBucket: "gamerandomid-90c54.firebasestorage.app",
+  messagingSenderId: "391713152656",
+  appId: "1:391713152656:web:da4d659a3700ca6c814215",
+  measurementId: "G-Q75WSFLQBC"
 };
 
 // Initialize Firebase
@@ -83,7 +83,4 @@ function resetGame() {
     usedNumbersRef.set([]);
 
     // เปิดปุ่มสุ่มตัวเลขและปิดปุ่มรีเซ็ต
-    document.getElementById('generateButton').disabled = false;
-    document.getElementById('generateButton').classList.remove('disabled');
-    document.getElementById('randomNumberResult').innerText = ''; // ล้างผลลัพธ์ที่แสดง
-}
+    document.getElementById('generateButton
