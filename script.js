@@ -1,7 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     initializeAppWithResetCheck();
 });
-
+firebase.auth().signInWithEmailAndPassword(email, password)
+  .then(userCredential => {
+    const user = userCredential.user;
+    console.log("เข้าสู่ระบบสำเร็จ:", user.email);
+    // ดึงข้อมูล user.uid เพื่อเช็กหรือบันทึกเลขสุ่ม
+  })
+  .catch(error => {
+    alert("เข้าสู่ระบบไม่สำเร็จ: " + error.message);
+  });
 const firebaseConfig = {
   apiKey: "AIzaSyAQO9rmSTXCLLTS35RKqoB3WfBG_y0-b7Q",
   authDomain: "gamerandomid-90c54.firebaseapp.com",
